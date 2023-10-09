@@ -32,21 +32,21 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Scripts | Starter Kit</title>
+<title>Scripts | 개발자 백호</title>
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="Scripts" />
-<meta name="author" content="<firstname> <lastname>" />
+<meta name="author" content="Yuhyeon Lee" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="There are two ways of adding third party scripts. Embedding is ideal for one-off scripts, while global scripts are loaded on every page." />
 <meta property="og:description" content="There are two ways of adding third party scripts. Embedding is ideal for one-off scripts, while global scripts are loaded on every page." />
 <link rel="canonical" href="http://localhost:4000/docs/scripts/" />
 <meta property="og:url" content="http://localhost:4000/docs/scripts/" />
-<meta property="og:site_name" content="Starter Kit" />
+<meta property="og:site_name" content="개발자 백호" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Scripts" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"<firstname> <lastname>"},"dateModified":"2023-09-16T21:48:21+09:00","description":"There are two ways of adding third party scripts. Embedding is ideal for one-off scripts, while global scripts are loaded on every page.","headline":"Scripts","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"},"name":"<firstname> <lastname>"},"url":"http://localhost:4000/docs/scripts/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-09-16T21:48:21+09:00","description":"There are two ways of adding third party scripts. Embedding is ideal for one-off scripts, while global scripts are loaded on every page.","headline":"Scripts","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/docs/scripts/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -66,17 +66,17 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Starter Kit">
+<meta name="apple-mobile-web-app-title" content="개발자 백호">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<meta name="application-name" content="Starter Kit">
+<meta name="application-name" content="개발자 백호">
 
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
 <link rel="alternate" href="http://localhost:4000/docs/scripts/" hreflang="en">
 
-<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Starter Kit" />
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
 
 
 <link rel="shortcut icon"    href="/assets/icons/favicon.ico">
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2023-09-30T14:41:48+09:00',
+    INDEX_KEY: 'index--2023-10-09T10:41:17+09:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -263,7 +263,7 @@ opening (or creating) <code class="language-plaintext highlighter-rouge">_includ
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- file: `_includes/my-scripts.html` --&gt;</span>
 <span class="nt">&lt;script&gt;</span>
-  <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">_pushState</span><span class="dl">'</span><span class="p">).</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">hy-push-state-load</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">_pushState</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">hy-push-state-load</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// </span><span class="o">&lt;</span><span class="nx">your</span> <span class="nx">init</span> <span class="nx">code</span><span class="o">&gt;</span>
   <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
@@ -291,7 +291,7 @@ you can disable push state by adding to your config file:</p>
 
 <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: `_config.yml`</span>
 <span class="na">hydejack</span><span class="pi">:</span>
-  <span class="na">no_push_state</span><span class="pi">:</span> <span class="kc">true</span>
+  <span class="na">no_push_state</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
 <p class="read-more">Continue with <a href="/docs/build/" class="heading flip-title">Build</a></p>
@@ -356,14 +356,14 @@ you can disable push state by adding to your config file:</p>
   <div class="sidebar-about">
     
       <a class="no-hover" href="/" tabindex="-1">
-        <img src="/assets/img/logo.png" class="avatar" alt="Starter Kit" width="120" height="120" loading="lazy" />
+        <img src="/assets/img/me.jpg" class="avatar" alt="개발자 백호" width="120" height="120" loading="lazy" />
       </a>
     
-    <a class="sidebar-title" href="/"><h2 class="h1">Starter Kit</h2></a>
+    <a class="sidebar-title" href="/"><h2 class="h1">개발자 백호</h2></a>
     
     
       <p class="">
-        Change <code class="language-plaintext highlighter-rouge">tagline</code> in <code class="language-plaintext highlighter-rouge">_config.yml</code>
+        Backend Engineer
 
       </p>
     
@@ -382,7 +382,7 @@ you can disable push state by adding to your config file:</p>
           class="sidebar-nav-item "
           
         >
-          Example
+          Thinkings
         </a>
       </li>
     
@@ -437,31 +437,7 @@ you can disable push state by adding to your config file:</p>
   
 
   <li>
-    <a href="https://twitter.com/<username>" title="Twitter" class="no-mark-external">
-      <span class="icon-twitter"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
-  </li>
-
-
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/<username>" title="GitHub" class="no-mark-external">
+    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
       <span class="icon-github"></span>
       <span class="sr-only">GitHub</span>
     </a>

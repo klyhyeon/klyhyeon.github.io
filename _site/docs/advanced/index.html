@@ -32,21 +32,21 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Advanced | Starter Kit</title>
+<title>Advanced | 개발자 백호</title>
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="Advanced" />
-<meta name="author" content="<firstname> <lastname>" />
+<meta name="author" content="Yuhyeon Lee" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended." />
 <meta property="og:description" content="This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended." />
 <link rel="canonical" href="http://localhost:4000/docs/advanced/" />
 <meta property="og:url" content="http://localhost:4000/docs/advanced/" />
-<meta property="og:site_name" content="Starter Kit" />
+<meta property="og:site_name" content="개발자 백호" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Advanced" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"<firstname> <lastname>"},"dateModified":"2023-09-16T21:48:21+09:00","description":"This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.","headline":"Advanced","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"},"name":"<firstname> <lastname>"},"url":"http://localhost:4000/docs/advanced/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-09-16T21:48:21+09:00","description":"This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.","headline":"Advanced","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/docs/advanced/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -66,17 +66,17 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Starter Kit">
+<meta name="apple-mobile-web-app-title" content="개발자 백호">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<meta name="application-name" content="Starter Kit">
+<meta name="application-name" content="개발자 백호">
 
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
 <link rel="alternate" href="http://localhost:4000/docs/advanced/" hreflang="en">
 
-<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Starter Kit" />
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
 
 
 <link rel="shortcut icon"    href="/assets/icons/favicon.ico">
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2023-09-30T14:41:48+09:00',
+    INDEX_KEY: 'index--2023-10-09T10:41:17+09:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">---</span>
 <span class="o">---</span>
-<span class="nf">importScripts</span><span class="p">(</span><span class="dl">"</span><span class="s2">{{ '/assets/js/sw.js' | relative_url }}?t={{ site.time | date_to_xmlschema }}</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">importScripts</span><span class="p">(</span><span class="dl">"</span><span class="s2">{{ '/assets/js/sw.js' | relative_url }}?t={{ site.time | date_to_xmlschema }}</span><span class="dl">"</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>This will load the main service worker script from Hydejack’s assets. The <code class="language-plaintext highlighter-rouge">site.time</code> part is necessary to make the service worker “byte different” every time you create a new build of your site, which triggers an update.</p>
@@ -253,7 +253,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
 <p>In your <code class="language-plaintext highlighter-rouge">config.yml</code> under the <code class="language-plaintext highlighter-rouge">hydejack</code> key, add the following:</p>
 
 <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">offline</span><span class="pi">:</span>
-  <span class="na">enabled</span><span class="pi">:</span> <span class="kc">true</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
   <span class="na">cache_version</span><span class="pi">:</span> <span class="m">1</span>
 </code></pre></div></div>
 
@@ -389,7 +389,7 @@ Also, since all files are valid SCSS, the splitting part is entirely optional.
 If you would like to build just one regular CSS file, add</p>
 
 <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hydejack</span><span class="pi">:</span>
-  <span class="na">no_inline_css</span><span class="pi">:</span> <span class="kc">true</span>
+  <span class="na">no_inline_css</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
 <p>to your config file.</p>
@@ -455,14 +455,14 @@ If you would like to build just one regular CSS file, add</p>
   <div class="sidebar-about">
     
       <a class="no-hover" href="/" tabindex="-1">
-        <img src="/assets/img/logo.png" class="avatar" alt="Starter Kit" width="120" height="120" loading="lazy" />
+        <img src="/assets/img/me.jpg" class="avatar" alt="개발자 백호" width="120" height="120" loading="lazy" />
       </a>
     
-    <a class="sidebar-title" href="/"><h2 class="h1">Starter Kit</h2></a>
+    <a class="sidebar-title" href="/"><h2 class="h1">개발자 백호</h2></a>
     
     
       <p class="">
-        Change <code class="language-plaintext highlighter-rouge">tagline</code> in <code class="language-plaintext highlighter-rouge">_config.yml</code>
+        Backend Engineer
 
       </p>
     
@@ -481,7 +481,7 @@ If you would like to build just one regular CSS file, add</p>
           class="sidebar-nav-item "
           
         >
-          Example
+          Thinkings
         </a>
       </li>
     
@@ -536,31 +536,7 @@ If you would like to build just one regular CSS file, add</p>
   
 
   <li>
-    <a href="https://twitter.com/<username>" title="Twitter" class="no-mark-external">
-      <span class="icon-twitter"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
-  </li>
-
-
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/<username>" title="GitHub" class="no-mark-external">
+    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
       <span class="icon-github"></span>
       <span class="sr-only">GitHub</span>
     </a>

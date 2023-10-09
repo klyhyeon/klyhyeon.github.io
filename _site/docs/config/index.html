@@ -32,21 +32,21 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Config | Starter Kit</title>
+<title>Config | 개발자 백호</title>
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="Config" />
-<meta name="author" content="<firstname> <lastname>" />
+<meta name="author" content="Yuhyeon Lee" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="This chapter covers the many configuration options of Hydejack, allowing you to tailor it to your needs." />
 <meta property="og:description" content="This chapter covers the many configuration options of Hydejack, allowing you to tailor it to your needs." />
 <link rel="canonical" href="http://localhost:4000/docs/config/" />
 <meta property="og:url" content="http://localhost:4000/docs/config/" />
-<meta property="og:site_name" content="Starter Kit" />
+<meta property="og:site_name" content="개발자 백호" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Config" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"<firstname> <lastname>"},"dateModified":"2023-09-16T21:48:21+09:00","description":"This chapter covers the many configuration options of Hydejack, allowing you to tailor it to your needs.","headline":"Config","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"},"name":"<firstname> <lastname>"},"url":"http://localhost:4000/docs/config/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-09-16T21:48:21+09:00","description":"This chapter covers the many configuration options of Hydejack, allowing you to tailor it to your needs.","headline":"Config","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/docs/config/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -66,17 +66,17 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Starter Kit">
+<meta name="apple-mobile-web-app-title" content="개발자 백호">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<meta name="application-name" content="Starter Kit">
+<meta name="application-name" content="개발자 백호">
 
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
 <link rel="alternate" href="http://localhost:4000/docs/config/" hreflang="en">
 
-<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Starter Kit" />
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
 
 
 <link rel="shortcut icon"    href="/assets/icons/favicon.ico">
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2023-09-30T14:41:48+09:00',
+    INDEX_KEY: 'index--2023-10-09T10:41:17+09:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -559,7 +559,7 @@ see the included <a href="https://github.com/hydecorp/hydejack-starter-kit/blob/
 <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
 <span class="na">layout</span><span class="pi">:</span>   <span class="s">post</span>
 <span class="na">title</span><span class="pi">:</span>    <span class="s">Hello World</span>
-<span class="na">comments</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="na">comments</span><span class="pi">:</span> <span class="no">true</span>
 <span class="nn">---</span>
 </code></pre></div></div>
 
@@ -571,7 +571,7 @@ E.g. to enable comments on all posts, add to your config file:</p>
   <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
       <span class="na">type</span><span class="pi">:</span> <span class="s">posts</span>
     <span class="na">values</span><span class="pi">:</span>
-      <span class="na">comments</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">comments</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
 <h2 id="enabling-google-analytics">Enabling Google Analytics</h2>
@@ -731,7 +731,7 @@ In the zip, ignore the <code class="language-plaintext highlighter-rouge">manife
 
 <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: `_config.yml`</span>
 <span class="na">hydejack</span><span class="pi">:</span>
-  <span class="na">cookies_banner</span><span class="pi">:</span> <span class="kc">true</span>
+  <span class="na">cookies_banner</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
 <p>Enabling this setting will show a notice at the top of the page to new visitors.
@@ -766,11 +766,11 @@ provide your <a href="https://tinyletter.com/">Tinyletter</a> username to the <c
 <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: `_config.yml`</span>
 <span class="na">hydejack</span><span class="pi">:</span>
   <span class="na">dark_mode</span><span class="pi">:</span>
-    <span class="na">dynamic</span><span class="pi">:</span> <span class="kc">true</span>
+    <span class="na">dynamic</span><span class="pi">:</span> <span class="no">true</span>
     <span class="na">sunrise</span><span class="pi">:</span> <span class="m">6</span>
     <span class="na">sunset</span><span class="pi">:</span>  <span class="m">18</span>
-    <span class="na">icon</span><span class="pi">:</span>    <span class="kc">true</span>
-    <span class="na">always</span><span class="pi">:</span>  <span class="kc">false</span>
+    <span class="na">icon</span><span class="pi">:</span>    <span class="no">true</span>
+    <span class="na">always</span><span class="pi">:</span>  <span class="no">false</span>
 </code></pre></div></div>
 
 <p>Setting <code class="language-plaintext highlighter-rouge">dynamic</code>, will enable dark mode based on the client’s local time (unlike location-based sunset calculations, this approach does not require a permission form the user). You can adjust <code class="language-plaintext highlighter-rouge">sunrise</code> and <code class="language-plaintext highlighter-rouge">sunset</code> to change when to show the light/dark theme.</p>
@@ -842,14 +842,14 @@ provide your <a href="https://tinyletter.com/">Tinyletter</a> username to the <c
   <div class="sidebar-about">
     
       <a class="no-hover" href="/" tabindex="-1">
-        <img src="/assets/img/logo.png" class="avatar" alt="Starter Kit" width="120" height="120" loading="lazy" />
+        <img src="/assets/img/me.jpg" class="avatar" alt="개발자 백호" width="120" height="120" loading="lazy" />
       </a>
     
-    <a class="sidebar-title" href="/"><h2 class="h1">Starter Kit</h2></a>
+    <a class="sidebar-title" href="/"><h2 class="h1">개발자 백호</h2></a>
     
     
       <p class="">
-        Change <code class="language-plaintext highlighter-rouge">tagline</code> in <code class="language-plaintext highlighter-rouge">_config.yml</code>
+        Backend Engineer
 
       </p>
     
@@ -868,7 +868,7 @@ provide your <a href="https://tinyletter.com/">Tinyletter</a> username to the <c
           class="sidebar-nav-item "
           
         >
-          Example
+          Thinkings
         </a>
       </li>
     
@@ -923,31 +923,7 @@ provide your <a href="https://tinyletter.com/">Tinyletter</a> username to the <c
   
 
   <li>
-    <a href="https://twitter.com/<username>" title="Twitter" class="no-mark-external">
-      <span class="icon-twitter"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
-  </li>
-
-
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/<username>" title="GitHub" class="no-mark-external">
+    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
       <span class="icon-github"></span>
       <span class="sr-only">GitHub</span>
     </a>

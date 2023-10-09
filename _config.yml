@@ -20,12 +20,12 @@
 lang:                  en
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 백엔드 개발자 백호
+title:                 개발자 백호
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Java와 Kotlin을 다루는 백엔드 개발자 입니다 :)
+  Java와 Kotlin을 다루는 개발자 입니다 😀
 
 # A shorter description for the sidebar.
 tagline:               Backend Engineer
@@ -36,7 +36,7 @@ keywords:              []
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/img/me.jpeg
+logo:                  /assets/img/me.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -48,7 +48,7 @@ author:
 
 # Add links to the sidebar.
 menu:
-  - title:             Example
+  - title:             Thinkings
     url:               /example/
   - title:             Documentation
     url:               /docs/
@@ -79,8 +79,8 @@ paginate_path:         /:num/
 # Theme
 # ---------------------------------------------------------------------------------------
 
-#theme: jekyll-theme-hydejack
-remote_theme: hydecorp/hydejack@v9
+theme: jekyll-theme-hydejack
+#remote_theme: hydecorp/hydejack@v9
 
 
 # Customizaton
