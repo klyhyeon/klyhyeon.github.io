@@ -49,7 +49,9 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             Thinkings
-    url:               /example/
+    url:               /thinkings/
+  - title:             Kotlin
+    url:               /kotlin/
   - title:             Documentation
     url:               /docs/
   - title:             About
