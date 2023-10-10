@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-09T15:02:32+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">개발자 백호</title><subtitle>Java와 Kotlin을 다루는 개발자 입니다 😀
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-10T21:52:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">개발자 백호</title><subtitle>Java와 Kotlin을 다루는 개발자 입니다 😀
 </subtitle><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><entry><title type="html">Coroutines guide</title><link href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" rel="alternate" type="text/html" title="Coroutines guide" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-09T15:02:14+09:00</updated><id>http://localhost:4000/kotlin/%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8</id><content type="html" xml:base="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"><![CDATA[<p class="lead">Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>Kotlin은 <code class="language-plaintext highlighter-rouge">suspending function</code> 컨셉을 사용해 <code class="language-plaintext highlighter-rouge">futures and promises</code>보다 에러에 강한 비동기 기능을 지원합니다.
 Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects"><code class="language-plaintext highlighter-rouge">kotlinx-coroutines-core</code></a> 의존성을 추가해야 합니다.</p>
 
 <ul class="large-only" id="markdown-toc">
-  <li><a href="#공부-컨텐츠" id="markdown-toc-공부-컨텐츠">공부 컨텐츠</a>    <ul>
+  <li><a href="#your-first-coroutine" id="markdown-toc-your-first-coroutine">Your first coroutine</a>    <ul>
       <li><a href="#1-kotlin-기초" id="markdown-toc-1-kotlin-기초">1. Kotlin 기초</a></li>
       <li><a href="#2-kotlin-coroutine" id="markdown-toc-2-kotlin-coroutine">2. Kotlin Coroutine</a></li>
     </ul>
@@ -13,9 +13,37 @@ Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.
   <li><a href="#정리하며" id="markdown-toc-정리하며">정리하며</a></li>
 </ul>
 
-<h2 id="공부-컨텐츠">공부 컨텐츠</h2>
+<h2 id="your-first-coroutine">Your first coroutine</h2>
 
-<p>기초만 알면서 쓰고있는 Kotlin을 연말까지 공부해 경험치를 높일 예정입니다.</p>
+<p><code class="language-plaintext highlighter-rouge">coroutine</code>은 suspendable computation의 인스턴스 입니다. 코드 블록 단위로 다른 코드와 동시성을 수행한다는 점은 스레드와 궤를 같이합니다.
+하지만 코루틴은 특정 스레드에 종속되지 않습니다. suspend한 스레드와 다른 스레드에서 재실행할 수 있습니다.</p>
+
+<p>코루틴을 가볍게 동작하는 스레드로 생각할 수 있지만 실사용에 스레드와 확연한 차이를 보여주기 때문에 이를 주의해야 합니다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">firstWorkingCoroutine</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">runBlocking</span> <span class="p">{</span><span class="c1">// this: CoroutineScope</span>
+            <span class="nf">launch</span> <span class="p">{</span> <span class="c1">//launch a new coroutine and continue</span>
+                <span class="nf">delay</span><span class="p">(</span><span class="mi">1000L</span><span class="p">)</span> <span class="c1">// non-blocking delay for 1 second</span>
+                <span class="nf">println</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span> <span class="c1">//print after delay</span>
+            <span class="p">}</span>
+            <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span> <span class="c1">//main coroutine continues while a previous one is deplayed</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 코드를 실행하면 콘솔에 아래와 같이 프린트 됩니다.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Hello</span><span class="w">
+</span><span class="err">World!</span><span class="w">
+</span></code></pre></div></div>
+
+<p>이제 코드를 해부해 봅시다.</p>
+
+<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a>는 코루틴 빌더입니다. 새로운 코루틴을 나머지 코드와 동시에 시작하기 때문에 독립적으로 작동합니다.
+그래서 <code class="language-plaintext highlighter-rouge">Hello</code>가 가장 먼저 출력되었습니다.</p>
+
+<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a></p>
 
 <h3 id="1-kotlin-기초">1. Kotlin 기초</h3>
 
