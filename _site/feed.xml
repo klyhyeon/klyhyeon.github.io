@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-10T21:52:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">개발자 백호</title><subtitle>Java와 Kotlin을 다루는 개발자 입니다 😀
-</subtitle><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><entry><title type="html">Coroutines guide</title><link href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" rel="alternate" type="text/html" title="Coroutines guide" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-09T15:02:14+09:00</updated><id>http://localhost:4000/kotlin/%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8</id><content type="html" xml:base="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"><![CDATA[<p class="lead">Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-16T22:37:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">개발자 백호</title><subtitle>Java와 Kotlin을 다루는 개발자 입니다 😀
+</subtitle><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><entry><title type="html">Coroutines guide</title><link href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" rel="alternate" type="text/html" title="Coroutines guide" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-10T21:53:17+09:00</updated><id>http://localhost:4000/kotlin/%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8</id><content type="html" xml:base="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"><![CDATA[<p class="lead">Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>Kotlin은 <code class="language-plaintext highlighter-rouge">suspending function</code> 컨셉을 사용해 <code class="language-plaintext highlighter-rouge">futures and promises</code>보다 에러에 강한 비동기 기능을 지원합니다.
 Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects"><code class="language-plaintext highlighter-rouge">kotlinx-coroutines-core</code></a> 의존성을 추가해야 합니다.</p>
 
 <ul class="large-only" id="markdown-toc">
   <li><a href="#your-first-coroutine" id="markdown-toc-your-first-coroutine">Your first coroutine</a>    <ul>
-      <li><a href="#1-kotlin-기초" id="markdown-toc-1-kotlin-기초">1. Kotlin 기초</a></li>
-      <li><a href="#2-kotlin-coroutine" id="markdown-toc-2-kotlin-coroutine">2. Kotlin Coroutine</a></li>
+      <li><a href="#structured-concurrency" id="markdown-toc-structured-concurrency">Structured concurrency</a></li>
     </ul>
   </li>
-  <li><a href="#정리하며" id="markdown-toc-정리하며">정리하며</a></li>
+  <li><a href="#extract-function-refactoringfunction-꺼내기-리팩토링" id="markdown-toc-extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</a></li>
 </ul>
 
 <h2 id="your-first-coroutine">Your first coroutine</h2>
@@ -43,20 +42,22 @@ Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.
 <p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a>는 코루틴 빌더입니다. 새로운 코루틴을 나머지 코드와 동시에 시작하기 때문에 독립적으로 작동합니다.
 그래서 <code class="language-plaintext highlighter-rouge">Hello</code>가 가장 먼저 출력되었습니다.</p>
 
-<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a></p>
+<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a>는 특별한 suspending function입니다. <code class="language-plaintext highlighter-rouge">delay</code>는 일정 시간 코루틴을 중지시킵니다.
+코루틴을 Suspending 시키는 것은 기본 스레드를 블락하는 것이 아니라 다른 코루틴들이 기본 스레드를 사용해 동작하게 하는 것입니다.</p>
 
-<h3 id="1-kotlin-기초">1. Kotlin 기초</h3>
+<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a>은 새로운 코루틴을 실행하면서 완료될 때까지 현재 스레드를 블락합니다.
+이 기능은 코루틴에 쓰여선 안됩니다. 일반적인 블락킹 코드와 코루틴 스타일로 적힌 라이브러리를 연결해주기 위해 만들어졌고 <code class="language-plaintext highlighter-rouge">main</code> 기능이나 테스트에 사용하도록 만들어졌습니다.
+스레드는 비싼 자원이며 이를 블락하는 건 큰 비용이 들기 때문에 사용하는 건 권장되지 않습니다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">Kotlin in Action</code>를 필요한 부분만 읽습니다. 한 주 시작으로 공부하고 배운 내용은 반드시 토이 프로젝트 예제 코드로 실습 후 블로그에 업로드 합니다.</p>
+<h3 id="structured-concurrency">Structured concurrency</h3>
 
-<h3 id="2-kotlin-coroutine">2. Kotlin Coroutine</h3>
+<p>코루틴은 <code class="language-plaintext highlighter-rouge">구조화된 동시성</code>을 따르기 때문에 새로운 코루틴들은 특정 CoroutineScope에서만 실행될 수 있습니다. 이러한 행위는 정해진 코루틴 생애 주기를 정합니다. 위의 예시 코드 중 <code class="language-plaintext highlighter-rouge">runBlocking</code>은 scope를 정하기 때문에 <code class="language-plaintext highlighter-rouge">World!</code>가 프린트 되고 1분 deplay가 끝나기 전까지 기다렸다가 프린트 된 다음에야 종료됩니다.
+실제 애플리케이션에선 훨씬 많은 코루틴들을 실행하게 될 것입니다. <code class="language-plaintext highlighter-rouge">구조화된 동시성</code>은 코루틴들이 소실되거나 누락이 없도록 관리합니다. 외부 스코프가 자식 코루틴이 끝나기 전엔 종료되지 못하게 하는 것도 그 역할입니다. 
+<code class="language-plaintext highlighter-rouge">구조화된 동시성</code>은 코드에 에러가 있을 때 기록하는 일도 담당합니다.</p>
 
-<p>업무에서 쓰고 있는 Spring WebFlux, R2DBC와 Kotlin 비동기 지원 라이브러리 Coroutine 정리합니다. 문서 읽고 블로그에 내용을 정리한 다음, 예제 코드로 실습합니다.
-코드를 통해 체득하는 과정이 필요하기 때문에 시간이 걸릴 수 있습니다.</p>
+<h2 id="extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</h2>
 
-<h2 id="정리하며">정리하며</h2>
-
-<p>한번에 많은 양을 공부하려 하지말고, 하루에 10분이라도 투자해 앞으로 나간다는 취지로 한 해를 마무리 했으면</p>
+<p>위 예제 코드의 <code class="language-plaintext highlighter-rouge">launch { ... }</code> 안에 있는 코드 블록을 별도의 function으로 분리해봅시다. “Extract function” 리팩토링을 코드에 접목할땐 <code class="language-plaintext highlighter-rouge">suspend</code>란 제어자가 필요합니다. 다음 글에 이어서 리팩토링을 진행해보겠습니다.</p>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
