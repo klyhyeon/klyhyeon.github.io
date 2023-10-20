@@ -1,5 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-16T22:37:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">개발자 백호</title><subtitle>Java와 Kotlin을 다루는 개발자 입니다 😀
-</subtitle><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><entry><title type="html">Coroutines guide</title><link href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" rel="alternate" type="text/html" title="Coroutines guide" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-10T21:53:17+09:00</updated><id>http://localhost:4000/kotlin/%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8</id><content type="html" xml:base="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"><![CDATA[<p class="lead">Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-20T21:37:54+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">개발자 백호</title><subtitle>Java와 Kotlin을 다루는 개발자 입니다 😀
+</subtitle><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><entry><title type="html">(1) 클린 아키텍처</title><link href="http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/" rel="alternate" type="text/html" title="(1) 클린 아키텍처" /><published>2023-10-20T00:00:00+09:00</published><updated>2023-10-20T21:36:15+09:00</updated><id>http://localhost:4000/architecture/%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98</id><content type="html" xml:base="http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/"><![CDATA[<p class="lead">클린 아키텍처<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>강력하고 안정된 아키텍처는 권위와 엄격함에서 온다는 생각과 마주하게 된다. 변경 비용이 크면 변경 자체를 제거한다. <code class="language-plaintext highlighter-rouge">...</code></p>
+
+<p>다른 길을 따라가면 추측성 일반화의 냄새가 강하게 난다.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> <code class="language-plaintext highlighter-rouge">...</code></p>
+
+<p>우리가 가장 관심 있는 길을 바로 가장 깔끔한(clean) 길이다. 이 길은 우리가 불완전한 지식에 기초해 행동한다는 사실을 인정할 뿐만 아니라, 불완전한 지식으로
+행동하는 것이야 말로 인간으로서 우리가 무엇인가를 하는 방식이며, 우리의 뛰어난 부분임을 이해한다. 이 길은 우리의 약점보다는 강점을 활용한다. – <em>추천사에서</em></p>
+
+<blockquote>
+  <p>빨리 가는 유일한 방법은 제대로 가는 것이다. - 로버트 C.마틴</p>
+</blockquote>
+
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#아키텍처가-뭔지-알기-위한-발버둥" id="markdown-toc-아키텍처가-뭔지-알기-위한-발버둥">아키텍처가 뭔지 알기 위한 발버둥</a></li>
+</ul>
+
+<h2 id="아키텍처가-뭔지-알기-위한-발버둥">아키텍처가 뭔지 알기 위한 발버둥</h2>
+
+<p>만 3년 차 백엔드 개발자가 되면 새로운 프로젝트 혹은 기능을 만들 때 필요한 아키텍처링은 할 줄 알아야 하지 않을까? 라는 의문이 마음 한구석에 자리잡았다.</p>
+
+<p>그동안 짜여져 있는 아키텍처를 이어서 사용하는 습관은 내 경험치로 쌓이지 않았다.
+아키텍처를 짜는게 두려운 현재에서 조금이나마 아키텍처에 대해 알아보자 하는 일종의 발버둥으로 이 책을 택했다.</p>
+
+<p>책을 다 읽고나면 아키텍처와 조금이나마 친해질 수 있기를 바라며 🙂</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>https://product.kyobobook.co.kr/detail/S000001033082 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>추측성 일반화는 마틴 파울러의 «리팩토링»에서 이야기하는 코드의 나쁜 냄새 중 하나다. 현재가 아닌 미래의 확장성을 기대하여 지나치게 일반화하는 경우를 가리킨다. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><category term="architecture" /><summary type="html"><![CDATA[클린 아키텍처1 https://product.kyobobook.co.kr/detail/S000001033082 &#x21a9;&#xfe0e;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/clean_architecture.jpeg" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/clean_architecture.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">(2) Coroutines guide</title><link href="http://localhost:4000/kotlin/2023-10-20-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8-2/" rel="alternate" type="text/html" title="(2) Coroutines guide" /><published>2023-10-20T00:00:00+09:00</published><updated>2023-10-20T08:29:52+09:00</updated><id>http://localhost:4000/kotlin/%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8-2</id><content type="html" xml:base="http://localhost:4000/kotlin/2023-10-20-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8-2/"><![CDATA[<p class="lead">[2] Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>지난 글에 이어 리팩토링을 진행하겠습니다. 원래 예제 코드에서 메서드를 두 개로 분리해보겠습니다.</p>
+
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#extract-function-refactoringfunction-꺼내기-리팩토링" id="markdown-toc-extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</a></li>
+  <li><a href="#coroutines-are-light-weight" id="markdown-toc-coroutines-are-light-weight">Coroutines are light-weight</a></li>
+</ul>
+
+<h2 id="extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</h2>
+
+<p><code class="language-plaintext highlighter-rouge">suspend</code> 제어자를 붙이면 <strong>suspending function</strong>이 됩니다. 코루틴이 아닌 함수와 동일한 방식으로 suspending function들을 사용할 수 있습니다(ex. delay)</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 원래 예제코드</span>
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">firstWorkingCoroutine</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">runBlocking</span> <span class="p">{</span><span class="c1">// this: CoroutineScope</span>
+            <span class="nf">launch</span> <span class="p">{</span> <span class="c1">//launch a new coroutine and continue</span>
+                <span class="nf">delay</span><span class="p">(</span><span class="mi">1000L</span><span class="p">)</span> <span class="c1">// non-blocking delay for 1 second</span>
+                <span class="nf">println</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span> <span class="c1">//print after delay</span>
+            <span class="p">}</span>
+            <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span> <span class="c1">//main coroutine continues while a previous one is deplayed</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="c1">// 리팩토링 코드</span>
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">=</span> <span class="nf">runBlocking</span> <span class="p">{</span>
+        <span class="nf">launch</span> <span class="p">{</span> <span class="nf">doWorld</span><span class="p">()</span> <span class="p">}</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="nd">@Test</span>
+    <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">doWorld</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">delay</span><span class="p">(</span><span class="mi">1000L</span><span class="p">)</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><em>이 외에도 실제 스레드를 블락하는 runBlocking과 기본 스레드를 일시 중지했다가 재실행하는 coroutineScope 설명도 있지만 생략하겠습니다.</em></p>
+
+<h2 id="coroutines-are-light-weight">Coroutines are light-weight</h2>
+
+<p>코루틴은 JVM 스레드보다 자원을 적게 사용하는 장점이 있습니다. 스레드를 사용하는 코드는 JVM 메모리를 낭비하지만 코루틴은 낭비하지 않고 동일한 효과를 낼 수 있습니다.</p>
+
+<p>해당 코드에서 <code class="language-plaintext highlighter-rouge">launch</code>를 <code class="language-plaintext highlighter-rouge">thread</code>로 바꾸고, <code class="language-plaintext highlighter-rouge">delay</code>를 <code class="language-plaintext highlighter-rouge">Thread.sleep</code>으로 변경한다면 많은 메모리를 소모할 것입니다. 하지만 코루틴을 사용하면 적은 메모리를 소모하고 작업을 마칠 수 있습니다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.*</span>
+
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">=</span> <span class="nf">runBlocking</span> <span class="p">{</span>
+        <span class="nf">repeat</span><span class="p">(</span><span class="mi">50_000</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// launch a lot of coroutines</span>
+            <span class="nf">launch</span> <span class="p">{</span>
+                <span class="nf">delay</span><span class="p">(</span><span class="mi">5000L</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"."</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>https://kotlinlang.org/docs/coroutines-basics.html <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><category term="kotlin" /><summary type="html"><![CDATA[[2] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &#x21a9;&#xfe0e;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/kotlin.png" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">(1) Coroutines guide</title><link href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" rel="alternate" type="text/html" title="(1) Coroutines guide" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-16T22:38:41+09:00</updated><id>http://localhost:4000/kotlin/%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8</id><content type="html" xml:base="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"><![CDATA[<p class="lead">[1] Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>Kotlin은 <code class="language-plaintext highlighter-rouge">suspending function</code> 컨셉을 사용해 <code class="language-plaintext highlighter-rouge">futures and promises</code>보다 에러에 강한 비동기 기능을 지원합니다.
 Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects"><code class="language-plaintext highlighter-rouge">kotlinx-coroutines-core</code></a> 의존성을 추가해야 합니다.</p>
@@ -65,7 +167,7 @@ Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.
       <p>https://kotlinlang.org/docs/coroutines-basics.html <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><category term="kotlin" /><summary type="html"><![CDATA[Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &#x21a9;&#xfe0e;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/kotlin.png" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">어떤 공부를 해야할까?</title><link href="http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/" rel="alternate" type="text/html" title="어떤 공부를 해야할까?" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-09T15:02:14+09:00</updated><id>http://localhost:4000/thinkings/%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C</id><content type="html" xml:base="http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/"><![CDATA[<p class="lead">남은 2023년 개발 로드맵</p>
+</div>]]></content><author><name>Yuhyeon Lee</name><email>klyhyeon@gmail.com</email></author><category term="kotlin" /><summary type="html"><![CDATA[[1] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &#x21a9;&#xfe0e;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/kotlin.png" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">어떤 공부를 해야할까?</title><link href="http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/" rel="alternate" type="text/html" title="어떤 공부를 해야할까?" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-09T15:02:14+09:00</updated><id>http://localhost:4000/thinkings/%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C</id><content type="html" xml:base="http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/"><![CDATA[<p class="lead">남은 2023년 개발 로드맵</p>
 
 <p>조금씩 꾸준히 로드맵 따라 2023년 마무리 하기</p>
 

@@ -52,8 +52,10 @@ menu:
     url:               /thinkings/
   - title:             Kotlin
     url:               /kotlin/
-  - title:             Documentation
-    url:               /docs/
+  - title:            Architecture
+    url:              /architecture/
+#  - title:             Documentation
+#    url:               /docs/
   - title:             About
     url:               /about/
 
