@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>http://localhost:4000/about/</loc>
-<lastmod>2023-10-09T10:41:40+09:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/</loc>
-<lastmod>2023-09-16T21:48:21+09:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/posts/</loc>
-<lastmod>2023-09-16T21:48:21+09:00</lastmod>
-</url>
+    
+    <url>
+        <loc>http://localhost:4000/kotlin/2023-10-20-%E1%84%8F%E1%85%A9%E1%84%85%E1%85%AE%E1%84%90%E1%85%B5%E1%86%AB-%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%86%E1%85%AE%E1%86%AB-2/</loc>
+        
+        <lastmod>2023-10-20T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>daily</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</loc>
+        
+        <lastmod>2023-10-20T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>daily</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/</loc>
+        
+        <lastmod>2023-10-09T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>daily</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/</loc>
+        
+        <lastmod>2023-10-09T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>daily</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
 </urlset>

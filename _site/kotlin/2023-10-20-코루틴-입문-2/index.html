@@ -1,0 +1,68 @@
+<p class="lead">[2] Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>지난 글에 이어 리팩토링을 진행하겠습니다. 원래 예제 코드에서 메서드를 두 개로 분리해보겠습니다.</p>
+
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#extract-function-refactoringfunction-꺼내기-리팩토링" id="markdown-toc-extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</a></li>
+  <li><a href="#coroutines-are-light-weight" id="markdown-toc-coroutines-are-light-weight">Coroutines are light-weight</a></li>
+</ul>
+
+<h2 id="extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</h2>
+
+<p><code class="language-plaintext highlighter-rouge">suspend</code> 제어자를 붙이면 <strong>suspending function</strong>이 됩니다. 코루틴이 아닌 함수와 동일한 방식으로 suspending function들을 사용할 수 있습니다(ex. delay)</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 원래 예제코드</span>
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">firstWorkingCoroutine</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">runBlocking</span> <span class="p">{</span><span class="c1">// this: CoroutineScope</span>
+            <span class="nf">launch</span> <span class="p">{</span> <span class="c1">//launch a new coroutine and continue</span>
+                <span class="nf">delay</span><span class="p">(</span><span class="mi">1000L</span><span class="p">)</span> <span class="c1">// non-blocking delay for 1 second</span>
+                <span class="nf">println</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span> <span class="c1">//print after delay</span>
+            <span class="p">}</span>
+            <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span> <span class="c1">//main coroutine continues while a previous one is deplayed</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="c1">// 리팩토링 코드</span>
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">=</span> <span class="nf">runBlocking</span> <span class="p">{</span>
+        <span class="nf">launch</span> <span class="p">{</span> <span class="nf">doWorld</span><span class="p">()</span> <span class="p">}</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="nd">@Test</span>
+    <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">doWorld</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">delay</span><span class="p">(</span><span class="mi">1000L</span><span class="p">)</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><em>이 외에도 실제 스레드를 블락하는 runBlocking과 기본 스레드를 일시 중지했다가 재실행하는 coroutineScope 설명도 있지만 생략하겠습니다.</em></p>
+
+<h2 id="coroutines-are-light-weight">Coroutines are light-weight</h2>
+
+<p>코루틴은 JVM 스레드보다 자원을 적게 사용하는 장점이 있습니다. 스레드를 사용하는 코드는 JVM 메모리를 낭비하지만 코루틴은 낭비하지 않고 동일한 효과를 낼 수 있습니다.</p>
+
+<p>해당 코드에서 <code class="language-plaintext highlighter-rouge">launch</code>를 <code class="language-plaintext highlighter-rouge">thread</code>로 바꾸고, <code class="language-plaintext highlighter-rouge">delay</code>를 <code class="language-plaintext highlighter-rouge">Thread.sleep</code>으로 변경한다면 많은 메모리를 소모할 것입니다. 하지만 코루틴을 사용하면 적은 메모리를 소모하고 작업을 마칠 수 있습니다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.*</span>
+
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">=</span> <span class="nf">runBlocking</span> <span class="p">{</span>
+        <span class="nf">repeat</span><span class="p">(</span><span class="mi">50_000</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// launch a lot of coroutines</span>
+            <span class="nf">launch</span> <span class="p">{</span>
+                <span class="nf">delay</span><span class="p">(</span><span class="mi">5000L</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"."</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>https://kotlinlang.org/docs/coroutines-basics.html <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+    </li>
+  </ol>
+</div>
