@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>(2) 클린 아키텍처 - SRP, OCP | 개발자 백호</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="(2) 클린 아키텍처 - SRP, OCP" />
+<meta name="author" content="Yuhyeon Lee" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="[2] 클린 아키텍처1 https://product.kyobobook.co.kr/detail/S000001033082 &amp;#x21a9;&amp;#xfe0e;" />
+<meta property="og:description" content="[2] 클린 아키텍처1 https://product.kyobobook.co.kr/detail/S000001033082 &amp;#x21a9;&amp;#xfe0e;" />
+<link rel="canonical" href="http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/" />
+<meta property="og:url" content="http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/" />
+<meta property="og:site_name" content="개발자 백호" />
+<meta property="og:image" content="http://localhost:4000/assets/img/blog/clean_architecture.jpeg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-02T00:00:00+09:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/img/blog/clean_architecture.jpeg" />
+<meta property="twitter:title" content="(2) 클린 아키텍처 - SRP, OCP" />
+<meta name="google-site-verification" content="sKbY2g58grHGkv-1oKVEbfIgG3hOz15fRuuFi0qOQl8" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-11-03T00:03:22+09:00","datePublished":"2023-11-02T00:00:00+09:00","description":"[2] 클린 아키텍처1 https://product.kyobobook.co.kr/detail/S000001033082 &amp;#x21a9;&amp;#xfe0e;","headline":"(2) 클린 아키텍처 - SRP, OCP","image":"http://localhost:4000/assets/img/blog/clean_architecture.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="개발자 백호">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="개발자 백호">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2023-11-03T00:03:57+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.5);--accent-color-highlight: rgba(79, 177, 186, 0.1);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71)}
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/architecture/">architecture</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2023-11-02-클린아키텍처-2</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-architecture-클린아키텍처-2" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        (2) 클린 아키텍처 - SRP, OCP
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2023-11-02T00:00:00+09:00">02 Nov 2023</time> in <a href="/architecture/" class="flip-title">Architecture</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 03 Nov 2023">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2023-11-03T00:03:22+09:00">2023-11-03</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+      
+        <div class="img-wrapper lead aspect-ratio sixteen-nine flip-project-img">
+          
+
+
+<img
+  
+    src="/assets/img/blog/clean_architecture.jpeg"
+    
+    
+  
+  alt="(2) 클린 아키텍처 - SRP, OCP"
+  
+  
+  width="864"
+  height="486"
+  loading="lazy"
+/>
+
+        </div>
+      
+      
+    
+
+    
+
+
+
+  
+
+
+  </header>
+
+  
+    <p class="lead">[2] 클린 아키텍처<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>지난 글에 이어 클린 아키텍처 본문의 시작인 설계 원칙을 다뤄보겠습니다. SOLID 설계 원칙은 인강과 책에서 많이 봤던 내용입니다. 하지만 설계를 토대로 해서인지 이렇게 깔끔한 예제와 설명은 클린 아키텍처가 처음이었습니다.</p>
+
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#srp-단일-책임-원칙" id="markdown-toc-srp-단일-책임-원칙">SRP: 단일 책임 원칙</a></li>
+  <li><a href="#ocp-개방-폐쇄-원칙" id="markdown-toc-ocp-개방-폐쇄-원칙">OCP: 개방-폐쇄 원칙</a></li>
+</ul>
+
+<h2 id="srp-단일-책임-원칙">SRP: 단일 책임 원칙</h2>
+
+<p>SRP에 대한 그동안 인지해온 것과 다른 방식의 접근이라 재밌게 읽은 챕터입니다. 평소에 메서드가 많은 역할을 할때 작은 역할로 쪼개는 작업을 하면서 SRP를 지킨다고 생각했습니다.하지만 <em>클린 아키텍처</em> 에서 _로버트 마틴_은 이렇게 얘기합니다.</p>
+
+<blockquote>
+  <p>하나의 모듈은 하나의, 오직 하나의 사용자 또는 이해관계자(액터)에 대해서만 책임져야 한다.</p>
+</blockquote>
+
+<p>그리고 바로 예시를 들어줍니다. 이 책이 맘에 드는 이유 중 하나가 예시로 드는 코드나 상황이 이해하기 좋습니다 😀</p>
+
+<p>간단히 써보자면 급여 애플리케이션을 재무팀, 인사팀, 개발팀에서 사용하고 있습니다.(각기 다른 액터)
+그들은 서로 이해관계가 다르기 때문에 원하는 기능 추가가 생기기 시작합니다. 하지만 설계를 <code class="language-plaintext highlighter-rouge">Employee</code> 클래스에 모든 메서드가 묶여 있게 한 나머지(높은 응집성) 인사팀의 요청으로 변경사항이 생겼지만 재무팀에서 모른 채 사용하다 큰 실수가 발생한다는 슬픈 얘기입니다. 그리고 이를 <em>우발적 중복</em>이라고 부릅니다. 이해관계가 겹치는 코드인줄 모르고 변경했다가 불상사가 발생했기 때문이죠.</p>
+
+<p>해결책은 메서드를 클래스별로 쪼개고 인스턴스화 한다는 것인데요, 그러다보면 인스턴스를 관리하기 까다로워집니다. <em>Facade 패턴</em><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>을 쓰면 복잡한 구현을 숨기고 하나의 클래스만 사용해 메서드를 호출할 수 있습니다. <em>Facade 패턴</em>을 모르신다면 자세한 내용은 한번 찾아보시는 것도 도움이 될 것 같습니다.
+영문이긴 하지만 Baeldung 예시가 좋아 링크 걸었습니다</p>
+
+<p>결론은 단일 책임 원칙은 액터마다 이해관계가 다르기 때문에 모듈을 분리해야 한다는 것입니다. 그럴 때 우린 변경에 무섭지 않은 시스템을 설계할 수 있습니다.</p>
+
+<h2 id="ocp-개방-폐쇄-원칙">OCP: 개방-폐쇄 원칙</h2>
+
+<blockquote>
+  <p>소프트웨어 개체는 확장에는 열려 있어야 하고, 변경에는 닫혀 있어야 한다.
+다시 말해 소프트웨어 개체의 행위는 확장할 수 있어야 하지만, 이때 개체를 변경해선 안된다.</p>
+</blockquote>
+
+<p>클래스, 인터페이스 의존들 사이에서 OCP를 지키려면 의존 관계를 단방향으로 성립해야합니다. 그리고 그 방향은 변경에 보호 돼야하는 컴포넌트를 향해 있어야 합니다. 그래야 의존하는 쪽에서 변경이 있어도 해당 컴포넌트는 영향받지 않기 때문입니다.</p>
+
+<p><img src="https://github.com/klyhyeon/klyhyeon.github.io/assets/61368705/5fa0aae7-753f-4b14-bec8-95c3346a1916" alt="image" /></p>
+
+<p><strong>8.2 그림</strong>을 보면 컴포넌트(두 줄로 감싸져있는 박스)들끼리 화살표로 의존하는 방향이 하나로 통일된다는 것을 알 수 있습니다. 여기서 열린 화살표는 의존을 뜻하고 닫힌 화살표는 구현 또는 상속을 뜻합니다.
+하나로 예를 들어 볼까요? <code class="language-plaintext highlighter-rouge">Interactor</code> 컴포넌트는 규칙들이 위치하는 곳이기 때문에 변경에 닫혀있어야 합니다. 따라서 <code class="language-plaintext highlighter-rouge">Database</code>와 <code class="language-plaintext highlighter-rouge">Controller</code>가 화살표로 가리키고 있지만(의존하고 있지만) 본인은 어디에도 의존을 사용하지 않습니다.
+<code class="language-plaintext highlighter-rouge">Database</code>를 접근해야할 때 <em>FinancialDataGateway</em> 인터페이스를 사용해 의존성을 역전시켜준 것도 볼만한 부분입니다.</p>
+
+<p>결론은 OCP는 시스템을 확장하기 쉬운 동시에 변경으로 인해 시스템이 너무 많은 영향을 받지 않도록 하는 목표를 가진 원칙입니다. 실무에서 시스템이 커질수록 유지보수하기 까다로운 형태가 되는데 그것을 우리는 레거시라고 부릅니다. 
+테스트 코드 작성과 이런 OCP 원칙을 지킨다면 시스템 규모가 커지더라도 유지보수에 드는 리소스를 줄일 수 있을 거라 생각합니다.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>https://product.kyobobook.co.kr/detail/S000001033082 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>https://www.baeldung.com/java-facade-pattern <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+    </li>
+  </ol>
+</div>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/me.jpg"
+    
+    
+  
+  alt="Yuhyeon Lee"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <p>2년 차 백엔드 개발자입니다. 실무에서 Kotlin을 사용합니다. 클린 코드를 지향합니다.</p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/kotlin/2023-10-20-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8-2/" class="flip-title"><span>(2) Coroutines guide</span></a>  <time class="faded fine" datetime="2023-10-20T00:00:00+09:00">20 Oct 2023</time></li>                        <li class="h4">  <a href="/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/" class="flip-title"><span>(1) 클린 아키텍처</span></a>  <time class="faded fine" datetime="2023-10-20T00:00:00+09:00">20 Oct 2023</time></li>                        <li class="h4">  <a href="/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/" class="flip-title"><span>어떤 공부를 해야할까?</span></a>  <time class="faded fine" datetime="2023-10-09T00:00:00+09:00">09 Oct 2023</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/sidebar-bg.jpg)"></div>
+
+    <div class="sidebar-sticky">
+    <div class="sidebar-about" style="margin-bottom: 10px;">
+        <!--블로그타이틀-->
+        <div class="sidebartitle" style="margin-bottom: 45px; margin-left: 45px; margin-right: 45px;">
+            <a class="sidebar-title" href="/"><h2 class="h1">개발자 백호</h2></a>
+
+        </div>
+        <!--블로그로고-->
+        
+        <a class="no-hover" style="margin-bottom: 50px;" href="/" tabindex="-1">
+            <img src="/assets/img/me.jpg" class="avatar"
+                 alt="개발자 백호" width="130" height="130" loading="lazy"/>
+        </a>
+        
+        <!--블로그 간단한 설명-->
+        
+        
+        <p class="">
+            <p>Backend Engineer
+
+        </p>
+        <div style="text-align: center;">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fklyhyeon.github.com&count_bg=%23FF4A00&title_bg=%23701FE7&icon=kotlin.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
+        </div>
+        
+    </div>
+
+    <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/thinkings/"
+          class="sidebar-nav-item "
+          
+        >
+          Thinkings
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/kotlin/"
+          class="sidebar-nav-item "
+          
+        >
+          Kotlin
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/architecture/"
+          class="sidebar-nav-item "
+          
+        >
+          Architecture
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+
+    <!--소셜바-->
+    
+    <div class="sidebar-social">
+        <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+    </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

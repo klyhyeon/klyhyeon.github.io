@@ -6,7 +6,27 @@
 </description>
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0900</lastBuildDate>
+        
+        <item>
+            <title>(2) 클린 아키텍처 - SRP, OCP</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;[2] 클린 아키텍처&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;https://product.kyobobook.co.kr/detail/S000001033082 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+            
+            <pubDate>Thu, 02 Nov 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/</link>
+            <guid isPermaLink="true">http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/</guid>
+        </item>
         
         <item>
             <title>(2) Coroutines guide</title>
