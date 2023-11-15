@@ -54,8 +54,8 @@ menu:
     url:               /kotlin/
   - title:            Architecture
     url:              /architecture/
-#  - title:             Documentation
-#    url:               /docs/
+  - title:             Conference
+    url:               /conference/
   - title:             About
     url:               /about/
 
