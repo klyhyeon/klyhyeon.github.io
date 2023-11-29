@@ -50,7 +50,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="(2) 클린 아키텍처 - SRP, OCP" />
 <meta name="google-site-verification" content="sKbY2g58grHGkv-1oKVEbfIgG3hOz15fRuuFi0qOQl8" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-11-03T00:03:22+09:00","datePublished":"2023-11-02T00:00:00+09:00","description":"[2] 클린 아키텍처1 https://product.kyobobook.co.kr/detail/S000001033082 &amp;#x21a9;&amp;#xfe0e;","headline":"(2) 클린 아키텍처 - SRP, OCP","image":"http://localhost:4000/assets/img/blog/clean_architecture.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-11-03T00:27:04+09:00","datePublished":"2023-11-02T00:00:00+09:00","description":"[2] 클린 아키텍처1 https://product.kyobobook.co.kr/detail/S000001033082 &amp;#x21a9;&amp;#xfe0e;","headline":"(2) 클린 아키텍처 - SRP, OCP","image":"http://localhost:4000/assets/img/blog/clean_architecture.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -113,7 +113,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2023-11-03T00:03:57+09:00',
+    INDEX_KEY: 'index--2023-11-29T23:59:20+09:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -238,7 +238,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
             <span class="ellipsis" data-tippy-content="Last modified at: 03 Nov 2023">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2023-11-03T00:03:22+09:00">2023-11-03</time>
+              <time datetime="2023-11-03T00:27:04+09:00">2023-11-03</time>
             </span>
           
         
@@ -292,7 +292,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
 
 <h2 id="srp-단일-책임-원칙">SRP: 단일 책임 원칙</h2>
 
-<p>SRP에 대한 그동안 인지해온 것과 다른 방식의 접근이라 재밌게 읽은 챕터입니다. 평소에 메서드가 많은 역할을 할때 작은 역할로 쪼개는 작업을 하면서 SRP를 지킨다고 생각했습니다.하지만 <em>클린 아키텍처</em> 에서 _로버트 마틴_은 이렇게 얘기합니다.</p>
+<p>SRP에 대한 그동안 인지해온 것과 다른 방식의 접근이라 재밌게 읽은 챕터입니다. 평소에 메서드가 많은 역할을 할때 작은 역할로 쪼개는 작업을 하면서 SRP를 지킨다고 생각했습니다.하지만 <em>클린 아키텍처</em> 에서 <em>로버트 마틴</em> 은 이렇게 얘기합니다.</p>
 
 <blockquote>
   <p>하나의 모듈은 하나의, 오직 하나의 사용자 또는 이해관계자(액터)에 대해서만 책임져야 한다.</p>
@@ -303,8 +303,8 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
 <p>간단히 써보자면 급여 애플리케이션을 재무팀, 인사팀, 개발팀에서 사용하고 있습니다.(각기 다른 액터)
 그들은 서로 이해관계가 다르기 때문에 원하는 기능 추가가 생기기 시작합니다. 하지만 설계를 <code class="language-plaintext highlighter-rouge">Employee</code> 클래스에 모든 메서드가 묶여 있게 한 나머지(높은 응집성) 인사팀의 요청으로 변경사항이 생겼지만 재무팀에서 모른 채 사용하다 큰 실수가 발생한다는 슬픈 얘기입니다. 그리고 이를 <em>우발적 중복</em>이라고 부릅니다. 이해관계가 겹치는 코드인줄 모르고 변경했다가 불상사가 발생했기 때문이죠.</p>
 
-<p>해결책은 메서드를 클래스별로 쪼개고 인스턴스화 한다는 것인데요, 그러다보면 인스턴스를 관리하기 까다로워집니다. <em>Facade 패턴</em><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>을 쓰면 복잡한 구현을 숨기고 하나의 클래스만 사용해 메서드를 호출할 수 있습니다. <em>Facade 패턴</em>을 모르신다면 자세한 내용은 한번 찾아보시는 것도 도움이 될 것 같습니다.
-영문이긴 하지만 Baeldung 예시가 좋아 링크 걸었습니다</p>
+<p>해결책은 메서드를 클래스별로 쪼개고 인스턴스화 한다는 것인데요, 그러다보면 인스턴스를 관리하기 까다로워집니다. <em>Facade 패턴</em> 을 쓰면 복잡한 구현을 숨기고 하나의 클래스만 사용해 메서드를 호출할 수 있습니다. <em>Facade 패턴</em>을 모르신다면 자세한 내용은 한번 찾아보시는 것도 도움이 될 것 같습니다.
+영문이긴 하지만 <a href="https://www.baeldung.com/java-facade-pattern">Baeldung 예시</a>가 좋아 링크 걸었습니다</p>
 
 <p>결론은 단일 책임 원칙은 액터마다 이해관계가 다르기 때문에 모듈을 분리해야 한다는 것입니다. 그럴 때 우린 변경에 무섭지 않은 시스템을 설계할 수 있습니다.</p>
 
@@ -330,9 +330,6 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
   <ol>
     <li id="fn:1" role="doc-endnote">
       <p>https://product.kyobobook.co.kr/detail/S000001033082 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-    </li>
-    <li id="fn:2" role="doc-endnote">
-      <p>https://www.baeldung.com/java-facade-pattern <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
     </li>
   </ol>
 </div>
@@ -436,7 +433,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/kotlin/2023-10-20-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8-2/" class="flip-title"><span>(2) Coroutines guide</span></a>  <time class="faded fine" datetime="2023-10-20T00:00:00+09:00">20 Oct 2023</time></li>                        <li class="h4">  <a href="/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/" class="flip-title"><span>(1) 클린 아키텍처</span></a>  <time class="faded fine" datetime="2023-10-20T00:00:00+09:00">20 Oct 2023</time></li>                        <li class="h4">  <a href="/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/" class="flip-title"><span>어떤 공부를 해야할까?</span></a>  <time class="faded fine" datetime="2023-10-09T00:00:00+09:00">09 Oct 2023</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/thinkings/2023-11-29-%EA%B1%B1%EC%A0%95%EC%97%90%EC%84%9C_%ED%83%88%EC%B6%9C%ED%95%98%EB%8A%94_%EB%B2%95/" class="flip-title"><span>걱정에서 탈출하는 법</span></a>  <time class="faded fine" datetime="2023-11-29T00:00:00+09:00">29 Nov 2023</time></li>                        <li class="h4">  <a href="/thinkings/2023-11-21-%EC%A7%80%EC%9A%B0%EC%99%80-%EB%8C%80%ED%99%94/" class="flip-title"><span>왜 일하기 싫을까?</span></a>  <time class="faded fine" datetime="2023-11-21T00:00:00+09:00">21 Nov 2023</time></li>                        <li class="h4">  <a href="/conference/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-%EC%A0%95%EB%A6%AC/" class="flip-title"><span>2023 우아콘(우아한테크콘퍼런스) 참여 후기</span></a>  <time class="faded fine" datetime="2023-11-15T00:00:00+09:00">15 Nov 2023</time></li>            </ul></aside>
 
   
 
@@ -561,6 +558,18 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
           
         >
           Architecture
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/conference/"
+          class="sidebar-nav-item "
+          
+        >
+          Conference
         </a>
       </li>
     
