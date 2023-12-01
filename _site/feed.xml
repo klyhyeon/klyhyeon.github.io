@@ -6,7 +6,19 @@
 </description>
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0900</lastBuildDate>
+        
+        <item>
+            <title>시니어 개발자가 될 수 있을까</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;&lt;strong&gt;시니어 타이틀은 연차가 만들어주지 않는다.&lt;/strong&gt;&lt;/p&gt;
+</description>
+            
+            <pubDate>Sat, 02 Dec 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/thinkings/2023-12-02-how-to-be-a-senior-engineer/</link>
+            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-12-02-how-to-be-a-senior-engineer/</guid>
+        </item>
         
         <item>
             <title>걱정에서 탈출하는 법</title>
@@ -16,8 +28,8 @@
 </description>
             
             <pubDate>Wed, 29 Nov 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/thinkings/2023-11-29-%EA%B1%B1%EC%A0%95%EC%97%90%EC%84%9C_%ED%83%88%EC%B6%9C%ED%95%98%EB%8A%94_%EB%B2%95/</link>
-            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-11-29-%EA%B1%B1%EC%A0%95%EC%97%90%EC%84%9C_%ED%83%88%EC%B6%9C%ED%95%98%EB%8A%94_%EB%B2%95/</guid>
+            <link>http://localhost:4000/thinkings/2023-11-29-%EA%B1%B1%EC%A0%95%EC%97%90%EC%84%9C-%ED%83%88%EC%B6%9C%ED%95%98%EB%8A%94-%EB%B2%95/</link>
+            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-11-29-%EA%B1%B1%EC%A0%95%EC%97%90%EC%84%9C-%ED%83%88%EC%B6%9C%ED%95%98%EB%8A%94-%EB%B2%95/</guid>
         </item>
         
         <item>
