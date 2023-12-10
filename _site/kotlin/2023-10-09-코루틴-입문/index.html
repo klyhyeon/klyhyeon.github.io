@@ -50,7 +50,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="(1) Coroutines guide" />
 <meta name="google-site-verification" content="sKbY2g58grHGkv-1oKVEbfIgG3hOz15fRuuFi0qOQl8" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-10-20T21:38:20+09:00","datePublished":"2023-10-09T00:00:00+09:00","description":"[1] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &amp;#x21a9;&amp;#xfe0e;","headline":"(1) Coroutines guide","image":"http://localhost:4000/assets/img/blog/kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-12-03T15:05:56+09:00","datePublished":"2023-10-09T00:00:00+09:00","description":"[1] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &amp;#x21a9;&amp;#xfe0e;","headline":"(1) Coroutines guide","image":"http://localhost:4000/assets/img/blog/kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -113,7 +113,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2023-12-02T08:19:54+09:00',
+    INDEX_KEY: 'index--2023-12-10T21:24:03+09:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -235,10 +235,10 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Oct 2023">
+            <span class="ellipsis" data-tippy-content="Last modified at: 03 Dec 2023">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2023-10-20T21:38:20+09:00">2023-10-20</time>
+              <time datetime="2023-12-03T15:05:56+09:00">2023-12-03</time>
             </span>
           
         
@@ -297,7 +297,7 @@ Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.
 <h2 id="your-first-coroutine">Your first coroutine</h2>
 
 <p><code class="language-plaintext highlighter-rouge">coroutine</code>은 suspendable computation의 인스턴스 입니다. 코드 블록 단위로 다른 코드와 동시성을 수행한다는 점은 스레드와 궤를 같이합니다.
-하지만 코루틴은 특정 스레드에 종속되지 않습니다. suspend한 스레드와 다른 스레드에서 재실행할 수 있습니다.</p>
+하지만 코루틴은 특정 스레드에 종속되지 않습니다. 중단한 스레드를 재개할 때 기존과 다른 스레드에서 재실행할 수 있습니다.</p>
 
 <p>코루틴을 가볍게 동작하는 스레드로 생각할 수 있지만 실사용에 스레드와 확연한 차이를 보여주기 때문에 이를 주의해야 합니다.</p>
 
@@ -448,7 +448,7 @@ Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/thinkings/2023-12-02-how-to-be-a-senior-engineer/" class="flip-title"><span>시니어 개발자가 될 수 있을까</span></a>  <time class="faded fine" datetime="2023-12-02T00:00:00+09:00">02 Dec 2023</time></li>                        <li class="h4">  <a href="/thinkings/2023-11-29-%EA%B1%B1%EC%A0%95%EC%97%90%EC%84%9C-%ED%83%88%EC%B6%9C%ED%95%98%EB%8A%94-%EB%B2%95/" class="flip-title"><span>걱정에서 탈출하는 법</span></a>  <time class="faded fine" datetime="2023-11-29T00:00:00+09:00">29 Nov 2023</time></li>                        <li class="h4">  <a href="/thinkings/2023-11-21-%EC%A7%80%EC%9A%B0%EC%99%80-%EB%8C%80%ED%99%94/" class="flip-title"><span>왜 일하기 싫을까?</span></a>  <time class="faded fine" datetime="2023-11-21T00:00:00+09:00">21 Nov 2023</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/conference/2023-12-10-Devfest-%EC%A0%95%EB%A6%AC/" class="flip-title"><span>2023 GDG 송도 Devfest 참여후기</span></a>  <time class="faded fine" datetime="2023-12-10T00:00:00+09:00">10 Dec 2023</time></li>                        <li class="h4">  <a href="/architecture/2023-12-04-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-3/" class="flip-title"><span>(2) 클린 아키텍처 - SRP, OCP</span></a>  <time class="faded fine" datetime="2023-12-04T00:00:00+09:00">04 Dec 2023</time></li>                        <li class="h4">  <a href="/kotlin/2023-12-03-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%B5%9C%ED%83%9C%ED%98%84-1/" class="flip-title"><span>(1) 코루틴 인프런 강의 - 루틴과 코루틴</span></a>  <time class="faded fine" datetime="2023-12-03T00:00:00+09:00">03 Dec 2023</time></li>            </ul></aside>
 
   
 

@@ -6,7 +6,63 @@
 </description>
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 10 Dec 2023 00:00:00 +0900</lastBuildDate>
+        
+        <item>
+            <title>2023 GDG 송도 Devfest 참여후기</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;2023 GDG 송도 Devfest 참여후기&lt;/p&gt;
+</description>
+            
+            <pubDate>Sun, 10 Dec 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/conference/2023-12-10-Devfest-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/</link>
+            <guid isPermaLink="true">http://localhost:4000/conference/2023-12-10-Devfest-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/</guid>
+        </item>
+        
+        <item>
+            <title>(2) 클린 아키텍처 - SRP, OCP</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;[2] 클린 아키텍처&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;https://product.kyobobook.co.kr/detail/S000001033082 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+            
+            <pubDate>Mon, 04 Dec 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/architecture/2023-12-04-%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5-3/</link>
+            <guid isPermaLink="true">http://localhost:4000/architecture/2023-12-04-%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5-3/</guid>
+        </item>
+        
+        <item>
+            <title>(1) 코루틴 인프런 강의 - 루틴과 코루틴</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;(1) 2시간으로 끝내는 코루틴 - 인프런 강의&lt;/p&gt;
+</description>
+            
+            <pubDate>Sun, 03 Dec 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/kotlin/2023-12-03-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%B5%9C%ED%83%9C%ED%98%84-1/</link>
+            <guid isPermaLink="true">http://localhost:4000/kotlin/2023-12-03-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%B5%9C%ED%83%9C%ED%98%84-1/</guid>
+        </item>
+        
+        <item>
+            <title>(2) 코루틴 인프런 강의 - 스레드 vs 코루틴</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;(2) 2시간으로 끝내는 코루틴 - 인프런 강의&lt;/p&gt;
+</description>
+            
+            <pubDate>Sun, 03 Dec 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/kotlin/2023-12-03-%E1%84%8F%E1%85%A9%E1%84%85%E1%85%AE%E1%84%90%E1%85%B5%E1%86%AB-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%B3%E1%84%85%E1%85%A5%E1%86%AB-%E1%84%8E%E1%85%AC%E1%84%90%E1%85%A2%E1%84%92%E1%85%A7%E1%86%AB-2/</link>
+            <guid isPermaLink="true">http://localhost:4000/kotlin/2023-12-03-%E1%84%8F%E1%85%A9%E1%84%85%E1%85%AE%E1%84%90%E1%85%B5%E1%86%AB-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%B3%E1%84%85%E1%85%A5%E1%86%AB-%E1%84%8E%E1%85%AC%E1%84%90%E1%85%A2%E1%84%92%E1%85%A7%E1%86%AB-2/</guid>
+        </item>
         
         <item>
             <title>시니어 개발자가 될 수 있을까</title>
@@ -16,8 +72,8 @@
 </description>
             
             <pubDate>Sat, 02 Dec 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/thinkings/2023-12-02-how-to-be-a-senior-engineer/</link>
-            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-12-02-how-to-be-a-senior-engineer/</guid>
+            <link>http://localhost:4000/thinkings/2023-12-02-senior-engineer/</link>
+            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-12-02-senior-engineer/</guid>
         </item>
         
         <item>
@@ -33,18 +89,6 @@
         </item>
         
         <item>
-            <title>왜 일하기 싫을까?</title>
-            
-            
-            <description>&lt;p class=&quot;lead&quot;&gt;일하기 싫은 이유를 나열해보자&lt;/p&gt;
-</description>
-            
-            <pubDate>Tue, 21 Nov 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/thinkings/2023-11-21-%E1%84%8C%E1%85%B5%E1%84%8B%E1%85%AE%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A2%E1%84%92%E1%85%AA/</link>
-            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-11-21-%E1%84%8C%E1%85%B5%E1%84%8B%E1%85%AE%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A2%E1%84%92%E1%85%AA/</guid>
-        </item>
-        
-        <item>
             <title>2023 우아콘(우아한테크콘퍼런스) 참여 후기</title>
             
             
@@ -54,18 +98,6 @@
             <pubDate>Wed, 15 Nov 2023 00:00:00 +0900</pubDate>
             <link>http://localhost:4000/conference/2023-11-15-%E1%84%8B%E1%85%AE%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%A9%E1%86%AB-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/</link>
             <guid isPermaLink="true">http://localhost:4000/conference/2023-11-15-%E1%84%8B%E1%85%AE%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%A9%E1%86%AB-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/</guid>
-        </item>
-        
-        <item>
-            <title>왜 일하기 싫을까?</title>
-            
-            
-            <description>&lt;p class=&quot;lead&quot;&gt;일하기 싫은 이유를 나열해보자&lt;/p&gt;
-</description>
-            
-            <pubDate>Sat, 11 Nov 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/thinkings/2023-11-11-%E1%84%92%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A2-%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%83%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A1%E1%86%BC/</link>
-            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-11-11-%E1%84%92%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A2-%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%83%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A1%E1%86%BC/</guid>
         </item>
         
         <item>
@@ -126,38 +158,6 @@
             <pubDate>Fri, 20 Oct 2023 00:00:00 +0900</pubDate>
             <link>http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</link>
             <guid isPermaLink="true">http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</guid>
-        </item>
-        
-        <item>
-            <title>어떤 공부를 해야할까?</title>
-            
-            
-            <description>&lt;p class=&quot;lead&quot;&gt;남은 2023년 개발 로드맵&lt;/p&gt;
-</description>
-            
-            <pubDate>Mon, 09 Oct 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/</link>
-            <guid isPermaLink="true">http://localhost:4000/thinkings/2023-10-09-%EC%96%B4%EB%96%A4-%EA%B3%B5%EB%B6%80%EB%A5%BC-%ED%95%B4%EC%95%BC%ED%95%A0%EA%B9%8C/</guid>
-        </item>
-        
-        <item>
-            <title>(1) Coroutines guide</title>
-            
-            
-            <description>&lt;p class=&quot;lead&quot;&gt;[1] Coroutines guide from Kotlin 공식문서&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;https://kotlinlang.org/docs/coroutines-basics.html &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-            
-            <pubDate>Mon, 09 Oct 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/</link>
-            <guid isPermaLink="true">http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/</guid>
         </item>
         
     </channel>
