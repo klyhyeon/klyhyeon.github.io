@@ -23,7 +23,8 @@ AWS는 2024년 2월부터 public IP에 대해 [과금](https://aws.amazon.com/ko
 
 IP의 논리적 분배입니다. 보통 네트워크를 두 개 이상의 네트워크로 나눌 때 Subnetting 한다고 부릅니다.
 동일한 서브넷에 있는 기기는 IP 주소에서 고유의 identical group을 가집니다. 이로써 IP는 두 가지 부분으로 나눌 수 있는데요.
-바로 network number(routing prefix)와 rest field(host identifier)입니다.
+바로 network number(routing prefix)와 rest field(host identifier)입니다. routing prefix는 주소의 첫 번째 부분을 담당하며 CIDR 표기법으로 작성됩니다.
+
 
 https://en.wikipedia.org/wiki/Subnet
 
