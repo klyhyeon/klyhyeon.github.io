@@ -31,7 +31,16 @@ IP의 논리적 분배입니다. 보통 네트워크를 두 개 이상의 네트
 따라서 남은 한 자리가 할당될 수 있는 IPv4의 범위를 나타냅니다. `192.50.100.0/24` ~ `192.50.100.255`가 주소 범위인 것입니다.
 
 만약 서로 routing prefix가 다른 두 서브넷이 통신한다면 라우터가 필요합니다. 라우터는 논리적, 물리적 경계를 만들어 줍니다.
-Traffic is exchanged between subnets through routers when the routing prefixes of the source address and the destination address differ. A router serves as a logical or physical boundary between the subnets.
+
+subnet은 한정된 자원(IPv4 주소)를 경제적으로 사용하기 위한 방법입니다. 
+
+### Network addresses and routing
+
+IP 네트워크에 참여하는 기기들은 DHCP나 OS에 의해 네트워크 주소를 할당받습니다.
+이 주소는 대상 라우팅(destination routing)에서 호스트를 식별하고 네트워크에서 찾는 일을 수행합니다. 
+
+[읽어보기]
+https://www.spiceworks.com/tech/networking/articles/what-is-subnet-mask/
 
 https://en.wikipedia.org/wiki/Subnet
 
