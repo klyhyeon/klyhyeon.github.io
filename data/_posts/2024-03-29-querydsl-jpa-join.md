@@ -25,9 +25,9 @@ innerJoin(join), leftJoin, rightJoin, fullJoin을 사용할 수 있고 추가로
 
 ```kotlin
 // 기본 조인
-order = QOrder.order
-member = QMember.member
-orderItem = QOrderItem.orderItem
+val order = QOrder.order
+val member = QMember.member
+val orderItem = QOrderItem.orderItem
 
 query.from(order)
     .join(order.member, member)
