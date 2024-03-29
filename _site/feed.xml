@@ -6,7 +6,31 @@
 </description>
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Sun, 10 Dec 2023 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0900</lastBuildDate>
+        
+        <item>
+            <title>Kotlin In-memory Cache &amp; Caffeine</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;Kotlin의 In-memory Cache에 대해 알아보고 Caffeine 라이브러리 살펴보기&lt;/p&gt;
+</description>
+            
+            <pubDate>Tue, 16 Jan 2024 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/data/2024-01-16-kotlin-in-memory-cache/</link>
+            <guid isPermaLink="true">http://localhost:4000/data/2024-01-16-kotlin-in-memory-cache/</guid>
+        </item>
+        
+        <item>
+            <title>(1) 오브젝트</title>
+            
+            
+            <description>&lt;p class=&quot;lead&quot;&gt;[1] 오브젝트&lt;/p&gt;
+</description>
+            
+            <pubDate>Fri, 22 Dec 2023 00:00:00 +0900</pubDate>
+            <link>http://localhost:4000/architecture/2023-12-22-%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3-1/</link>
+            <guid isPermaLink="true">http://localhost:4000/architecture/2023-12-22-%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3-1/</guid>
+        </item>
         
         <item>
             <title>2023 GDG 송도 Devfest 참여후기</title>
@@ -118,46 +142,6 @@
             <pubDate>Thu, 02 Nov 2023 00:00:00 +0900</pubDate>
             <link>http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/</link>
             <guid isPermaLink="true">http://localhost:4000/architecture/2023-11-02-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-2/</guid>
-        </item>
-        
-        <item>
-            <title>(2) Coroutines guide</title>
-            
-            
-            <description>&lt;p class=&quot;lead&quot;&gt;[2] Coroutines guide from Kotlin 공식문서&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;https://kotlinlang.org/docs/coroutines-basics.html &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-            
-            <pubDate>Fri, 20 Oct 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/kotlin/2023-10-20-%E1%84%8F%E1%85%A9%E1%84%85%E1%85%AE%E1%84%90%E1%85%B5%E1%86%AB-%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%86%E1%85%AE%E1%86%AB-2/</link>
-            <guid isPermaLink="true">http://localhost:4000/kotlin/2023-10-20-%E1%84%8F%E1%85%A9%E1%84%85%E1%85%AE%E1%84%90%E1%85%B5%E1%86%AB-%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%86%E1%85%AE%E1%86%AB-2/</guid>
-        </item>
-        
-        <item>
-            <title>(1) 클린 아키텍처</title>
-            
-            
-            <description>&lt;p class=&quot;lead&quot;&gt;클린 아키텍처&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;https://product.kyobobook.co.kr/detail/S000001033082 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-            
-            <pubDate>Fri, 20 Oct 2023 00:00:00 +0900</pubDate>
-            <link>http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</link>
-            <guid isPermaLink="true">http://localhost:4000/architecture/2023-10-20-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</guid>
         </item>
         
     </channel>

@@ -32,25 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>(1) Coroutines guide | 개발자 백호</title>
+<title>Data | 개발자 백호</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="(1) Coroutines guide" />
+<meta property="og:title" content="Data" />
 <meta name="author" content="Yuhyeon Lee" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="[1] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &amp;#x21a9;&amp;#xfe0e;" />
-<meta property="og:description" content="[1] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &amp;#x21a9;&amp;#xfe0e;" />
-<link rel="canonical" href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" />
-<meta property="og:url" content="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" />
+<meta name="description" content="데이터" />
+<meta property="og:description" content="데이터" />
+<link rel="canonical" href="http://localhost:4000/data/" />
+<meta property="og:url" content="http://localhost:4000/data/" />
 <meta property="og:site_name" content="개발자 백호" />
-<meta property="og:image" content="http://localhost:4000/assets/img/blog/kotlin.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-10-09T00:00:00+09:00" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="http://localhost:4000/assets/img/blog/kotlin.png" />
-<meta property="twitter:title" content="(1) Coroutines guide" />
+<meta property="article:published_time" content="2024-01-16T23:25:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data" />
 <meta name="google-site-verification" content="sKbY2g58grHGkv-1oKVEbfIgG3hOz15fRuuFi0qOQl8" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-12-03T15:05:56+09:00","datePublished":"2023-10-09T00:00:00+09:00","description":"[1] Coroutines guide from Kotlin 공식문서1 https://kotlinlang.org/docs/coroutines-basics.html &amp;#x21a9;&amp;#xfe0e;","headline":"(1) Coroutines guide","image":"http://localhost:4000/assets/img/blog/kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2024-01-15T23:21:27+09:00","datePublished":"2024-01-16T23:25:00+09:00","description":"데이터","headline":"Data","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/data/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -78,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="http://localhost:4000/kotlin/2023-10-09-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EC%9E%85%EB%AC%B8/" hreflang="en">
+<link rel="alternate" href="http://localhost:4000/data/" hreflang="en">
 
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
 
@@ -178,7 +176,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
 
   <main
   id="_main"
-  class="content layout-post"
+  class="content layout-list"
   role="main"
 >
   <nav id="breadcrumbs" class="screen-only"><ul>
@@ -189,276 +187,66 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
       <li>
         
           <span>/</span>
-          
-          
-          <a href="/kotlin/">kotlin</a>
-        
-      </li>
-    
-      <li>
-        
-          <span>/</span>
-          <span>2023-10-09-코루틴-입문</span>
+          <span>data</span>
         
       </li>
     
   
 </ul></nav>
-  
-
-
-
-
-
-
-
-
-
-
-<article id="post-kotlin-코루틴-입문" class="page post mb6" role="article">
+  <article class="page mb6" role="article">
   <header>
-    <h1 class="post-title flip-project-title">
-      
-        (1) Coroutines guide
-      
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2023-10-09T00:00:00+09:00">09 Oct 2023</time> in <a href="/kotlin/" class="flip-title">Kotlin</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 03 Dec 2023">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2023-12-03T15:05:56+09:00">2023-12-03</time>
-            </span>
-          
-        
-      
-    </div>
-
+    <h1 class="page-title">Data</h1>
     
-    
-      
-        <div class="img-wrapper lead aspect-ratio sixteen-nine flip-project-img">
-          
 
 
-<img
+
   
-    src="/assets/img/blog/kotlin.png"
-    
-    
-  
-  alt="(1) Coroutines guide"
-  
-  
-  width="864"
-  height="486"
-  loading="lazy"
-/>
+    <p class="note-sm" >
+      데이터
 
-        </div>
-      
-      
-    
-
-    
-
-
-
+    </p>
   
 
 
   </header>
 
   
-    <p class="lead">[1] Coroutines guide from Kotlin 공식문서<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
-<p>Kotlin은 <code class="language-plaintext highlighter-rouge">suspending function</code> 컨셉을 사용해 <code class="language-plaintext highlighter-rouge">futures and promises</code>보다 에러에 강한 비동기 기능을 지원합니다.
-Coroutines를 사용하기 위해선 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects"><code class="language-plaintext highlighter-rouge">kotlinx-coroutines-core</code></a> 의존성을 추가해야 합니다.</p>
 
-<ul class="large-only" id="markdown-toc">
-  <li><a href="#your-first-coroutine" id="markdown-toc-your-first-coroutine">Your first coroutine</a>    <ul>
-      <li><a href="#structured-concurrency" id="markdown-toc-structured-concurrency">Structured concurrency</a></li>
-    </ul>
-  </li>
-  <li><a href="#extract-function-refactoringfunction-꺼내기-리팩토링" id="markdown-toc-extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</a></li>
-</ul>
 
-<h2 id="your-first-coroutine">Your first coroutine</h2>
 
-<p><code class="language-plaintext highlighter-rouge">coroutine</code>은 suspendable computation의 인스턴스 입니다. 코드 블록 단위로 다른 코드와 동시성을 수행한다는 점은 스레드와 궤를 같이합니다.
-하지만 코루틴은 특정 스레드에 종속되지 않습니다. 중단한 스레드를 재개할 때 기존과 다른 스레드에서 재실행할 수 있습니다.</p>
 
-<p>코루틴을 가볍게 동작하는 스레드로 생각할 수 있지만 실사용에 스레드와 확연한 차이를 보여주기 때문에 이를 주의해야 합니다.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Test</span>
-    <span class="k">fun</span> <span class="nf">firstWorkingCoroutine</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nf">runBlocking</span> <span class="p">{</span><span class="c1">// this: CoroutineScope</span>
-            <span class="nf">launch</span> <span class="p">{</span> <span class="c1">//launch a new coroutine and continue</span>
-                <span class="nf">delay</span><span class="p">(</span><span class="mi">1000L</span><span class="p">)</span> <span class="c1">// non-blocking delay for 1 second</span>
-                <span class="nf">println</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span> <span class="c1">//print after delay</span>
-            <span class="p">}</span>
-            <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span> <span class="c1">//main coroutine continues while a previous one is deplayed</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</code></pre></div></div>
 
-<p>위 코드를 실행하면 콘솔에 아래와 같이 프린트 됩니다.</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Hello</span><span class="w">
-</span><span class="err">World!</span><span class="w">
-</span></code></pre></div></div>
 
-<p>이제 코드를 해부해 봅시다.</p>
 
-<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a>는 코루틴 빌더입니다. 새로운 코루틴을 나머지 코드와 동시에 시작하기 때문에 독립적으로 작동합니다.
-그래서 <code class="language-plaintext highlighter-rouge">Hello</code>가 가장 먼저 출력되었습니다.</p>
-
-<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a>는 특별한 suspending function입니다. <code class="language-plaintext highlighter-rouge">delay</code>는 일정 시간 코루틴을 중지시킵니다.
-코루틴을 Suspending 시키는 것은 기본 스레드를 블락하는 것이 아니라 다른 코루틴들이 기본 스레드를 사용해 동작하게 하는 것입니다.</p>
-
-<p><a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a>은 새로운 코루틴을 실행하면서 완료될 때까지 현재 스레드를 블락합니다.
-이 기능은 코루틴에 쓰여선 안됩니다. 일반적인 블락킹 코드와 코루틴 스타일로 적힌 라이브러리를 연결해주기 위해 만들어졌고 <code class="language-plaintext highlighter-rouge">main</code> 기능이나 테스트에 사용하도록 만들어졌습니다.
-스레드는 비싼 자원이며 이를 블락하는 건 큰 비용이 들기 때문에 사용하는 건 권장되지 않습니다.</p>
-
-<h3 id="structured-concurrency">Structured concurrency</h3>
-
-<p>코루틴은 <code class="language-plaintext highlighter-rouge">구조화된 동시성</code>을 따르기 때문에 새로운 코루틴들은 특정 CoroutineScope에서만 실행될 수 있습니다. 이러한 행위는 정해진 코루틴 생애 주기를 정합니다. 위의 예시 코드 중 <code class="language-plaintext highlighter-rouge">runBlocking</code>은 scope를 정하기 때문에 <code class="language-plaintext highlighter-rouge">World!</code>가 프린트 되고 1분 deplay가 끝나기 전까지 기다렸다가 프린트 된 다음에야 종료됩니다.
-실제 애플리케이션에선 훨씬 많은 코루틴들을 실행하게 될 것입니다. <code class="language-plaintext highlighter-rouge">구조화된 동시성</code>은 코루틴들이 소실되거나 누락이 없도록 관리합니다. 외부 스코프가 자식 코루틴이 끝나기 전엔 종료되지 못하게 하는 것도 그 역할입니다. 
-<code class="language-plaintext highlighter-rouge">구조화된 동시성</code>은 코드에 에러가 있을 때 기록하는 일도 담당합니다.</p>
-
-<h2 id="extract-function-refactoringfunction-꺼내기-리팩토링">Extract function refactoring(function 꺼내기 리팩토링)</h2>
-
-<p>위 예제 코드의 <code class="language-plaintext highlighter-rouge">launch { ... }</code> 안에 있는 코드 블록을 별도의 function으로 분리해봅시다. “Extract function” 리팩토링을 코드에 접목할땐 <code class="language-plaintext highlighter-rouge">suspend</code>란 제어자가 필요합니다. 다음 글에 이어서 리팩토링을 진행해보겠습니다.</p>
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>https://kotlinlang.org/docs/coroutines-basics.html <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-    </li>
-  </ol>
-</div>
 
   
-</article>
+  
+    
+    <h2 id="y-2024" class="hr-bottom">2024</h2>
+    <ul class="related-posts">
+    
+  
+  
 
+
+<li class="h4">
+  <a href="/data/2024-01-16-kotlin-in-memory-cache/" class="flip-title"><span>Kotlin In-memory Cache & Caffeine</span></a>
+  <time class="faded fine" datetime="2024-01-16T00:00:00+09:00">16 Jan</time>
+</li>
+
+  </ul>
+
+
+</article>
 
 
   <hr class="dingbat related mb6" />
 
 
 
-
-
-
-  
-     
-
-
-  <aside class="about related mt4 mb4" role="complementary">
-    
-    
-
-<div class="author mt4">
-  
-
-  
-    
-
-
-<img
-  
-    src="/assets/img/me.jpg"
-    
-    
-  
-  alt="Yuhyeon Lee"
-  class="avatar"
-  
-  width="120"
-  height="120"
-  loading="lazy"
-/>
-
-  
-
-  
-  
-  <h2  class="page-title hr-bottom">
-    About
-  </h2>
-
-  <p>백엔드 개발자입니다. 실무에서 Kotlin을 사용합니다.</p>
-
-
-  <div class="sidebar-social">
-    <span class="sr-only">Social:</span>
-<ul>
-  
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
-      <span class="icon-github"></span>
-      <span class="sr-only">GitHub</span>
-    </a>
-  </li>
-
-
-    
-  
-</ul>
-
-  </div>
-</div>
-
-  </aside>
-
-
-  
-
-  
-  
-
-  
-    
-
-
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/data/2024-01-16-kotlin-in-memory-cache/" class="flip-title"><span>Kotlin In-memory Cache & Caffeine</span></a>  <time class="faded fine" datetime="2024-01-16T00:00:00+09:00">16 Jan 2024</time></li>                        <li class="h4">  <a href="/architecture/2023-12-22-%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8-1/" class="flip-title"><span>(1) 오브젝트</span></a>  <time class="faded fine" datetime="2023-12-22T00:00:00+09:00">22 Dec 2023</time></li>                        <li class="h4">  <a href="/conference/2023-12-10-Devfest-%EC%A0%95%EB%A6%AC/" class="flip-title"><span>2023 GDG 송도 Devfest 참여후기</span></a>  <time class="faded fine" datetime="2023-12-10T00:00:00+09:00">10 Dec 2023</time></li>            </ul></aside>
-
-  
-
-  
-  
-
-  
-    
-
-  
 
 
   
