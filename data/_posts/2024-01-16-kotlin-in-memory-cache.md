@@ -6,7 +6,7 @@ image:
 #description: >
 #  Version 9 is the most complete version of Hydejack yet.
 #  Modernized design, big headlines, and big new features.
-sitemap: false
+sitemap: true
 ---
 
 Kotlin의 In-memory Cache에 대해 알아보고 Caffeine 라이브러리 살펴보기 

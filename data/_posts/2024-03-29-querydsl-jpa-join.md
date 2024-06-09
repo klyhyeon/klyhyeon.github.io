@@ -6,7 +6,7 @@ image:
 #description: >
 #  Version 9 is the most complete version of Hydejack yet.
 #  Modernized design, big headlines, and big new features.
-sitemap: false
+sitemap: true
 ---
 
 Querydsl에서 join 사용하는 방법을 복습하고자 정리해보았습니다. 김영한님 책에 있는 내용을 그대로 발췌하였습니다.

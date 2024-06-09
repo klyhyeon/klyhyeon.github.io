@@ -6,7 +6,7 @@ image:
 #description: >
 #  Version 9 is the most complete version of Hydejack yet.
 #  Modernized design, big headlines, and big new features.
-sitemap: false
+sitemap: true
 ---
 
 Querydsl에서 프로젝션을 사용해 쿼리 결과를 DTO로 받는 방법을 공부하고자 정리해보았습니다. 김영한님 책에 있는 내용을 그대로 발췌하였습니다.
