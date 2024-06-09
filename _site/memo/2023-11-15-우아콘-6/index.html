@@ -1,806 +1,121 @@
-<!DOCTYPE html>
-<html lang="en"><!--
- __  __                __                                     __
-/\ \/\ \              /\ \             __                    /\ \
-\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
- \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
-  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
-   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
-    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
-                /\___/                \ \____/
-                \/__/                  \/___/
+<p class="lead">Kafka를 활용한 이벤트 기반 아키텍처 구축 - 임준수 (딜리버리서비스팀), 송인태 (배차시스템팀)</p>
 
-Powered by Hydejack v9.1.6 <https://hydejack.com/>
--->
+<p>이벤트 기반 아키텍처를 적용했던 경험담을 공유 드립니다.
+이벤트 정의부터 구현 과정 그리고 이후로 더 해볼 수 있는 것들까지, 우리가 고민했던 부분들을 이야기해보려 합니다.</p>
 
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#이벤트-기반-아키텍처를-왜" id="markdown-toc-이벤트-기반-아키텍처를-왜">이벤트 기반 아키텍처를 왜?</a></li>
+  <li><a href="#이벤트의-구성요소" id="markdown-toc-이벤트의-구성요소">이벤트의 구성요소</a></li>
+  <li><a href="#이벤트의-파이프라인순서-보장" id="markdown-toc-이벤트의-파이프라인순서-보장">이벤트의 파이프라인(순서 보장)</a></li>
+</ul>
 
+<h3 id="이벤트-기반-아키텍처를-왜">이벤트 기반 아키텍처를 왜?</h3>
 
-
-
-
-
-<head>
-  
-
-
-
-
-  <meta name="robots" content="noindex">
-
-
-
-  
-    
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Kafka를 활용한 이벤트 기반 아키텍처 구축 | 개발자 백호</title>
-<meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="Kafka를 활용한 이벤트 기반 아키텍처 구축" />
-<meta name="author" content="Yuhyeon Lee" />
-<meta property="og:locale" content="en" />
-<meta name="description" content="Java와 Kotlin을 다루는 개발자 입니다 😀" />
-<meta property="og:description" content="Java와 Kotlin을 다루는 개발자 입니다 😀" />
-<link rel="canonical" href="http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-6/" />
-<meta property="og:url" content="http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-6/" />
-<meta property="og:site_name" content="개발자 백호" />
-<meta property="og:image" content="http://localhost:4000/assets/img/blog/new_years_card_297_2023_a.jpg" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="http://localhost:4000/assets/img/blog/new_years_card_297_2023_a.jpg" />
-<meta property="twitter:title" content="Kafka를 활용한 이벤트 기반 아키텍처 구축" />
-<meta name="google-site-verification" content="sKbY2g58grHGkv-1oKVEbfIgG3hOz15fRuuFi0qOQl8" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-11-15T20:31:34+09:00","description":"Java와 Kotlin을 다루는 개발자 입니다 😀","headline":"Kafka를 활용한 이벤트 기반 아키텍처 구축","image":"http://localhost:4000/assets/img/blog/new_years_card_297_2023_a.jpg","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-6/"}</script>
-<!-- End Jekyll SEO tag -->
-
-
-  
-
-  
-
-
-
-  <meta name="theme-color" content="rgb(25,55,71)">
-
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-
-<meta name="mobile-web-app-capable" content="yes">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="개발자 백호">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-<meta name="application-name" content="개발자 백호">
-
-<meta name="generator" content="Hydejack v9.1.6" />
-
-
-<link rel="alternate" href="http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-6/" hreflang="en">
-
-<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
-
-
-<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
-<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
-
-<link rel="manifest" href="/assets/site.webmanifest">
-
-<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
-
-
-
-<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
-
-
-
-
-
-
-<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
-!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
-!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
-!function(w) {
-  w._baseURL = '/';
-  w._publicPath = '/assets/js/';
-  w._noPushState = false;
-  w._noDrawer = false;
-  w._noNavbar = false;
-  w._noToc = false;
-  w._noSearch = false;
-  w._search = {
-    DATA_URL: '/assets/sitedata.json?no-cache',
-    STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2024-01-16T23:25:00+09:00',
-  };
-  w._clapButton = true;
-}(window);</script>
-
-
-<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
-
-
-<!--[if gt IE 8]><!---->
-
-  
-
-
-
-
-<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
-<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
-
-
-
-  <style id="_pageStyle">
-
-html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.5);--accent-color-highlight: rgba(79, 177, 186, 0.1);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71)}
-</style>
-
-
-<!--<![endif]-->
-
-
-
-
-</head>
-
-<body class="no-break-layout">
-  
-
-
-<hy-push-state
-  id="_pushState"
-  replace-selector="#_main"
-  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
-  script-selector="script"
-  duration="500"
-  hashchange
->
-  
-  
-  <div id="_navbar" class="navbar fixed-top">
-  <div class="content">
-    <span class="sr-only">Jump to:</span>
-    <div class="nav-btn-bar">
-      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
-        <span class="sr-only">Navigation</span>
-        <span class="icon-menu"></span>
-      </a>
-      <div class="nav-span"></div>
-    </div>
-  </div>
-</div>
-<hr class="sr-only" hidden />
-
-  <main
-  id="_main"
-  class="content layout-post"
-  role="main"
->
-  <nav id="breadcrumbs" class="screen-only"><ul>
-  
-  
-    <li><a href="/">home</a></li>
-    
-      <li>
-        
-          <span>/</span>
-          
-          
-          <a href="/memo/">memo</a>
-        
-      </li>
-    
-      <li>
-        
-          <span>/</span>
-          <span>2023-11-15-우아콘-6</span>
-        
-      </li>
-    
-  
-</ul></nav>
-  
-
-
-
-
-
-
-
-
-
-
-<article id="post" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      
-        Kafka를 활용한 이벤트 기반 아키텍처 구축
-      
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime=""></time>  
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 15 Nov 2023">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2023-11-15T20:31:34+09:00">2023-11-15</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-      
-        <div class="img-wrapper lead aspect-ratio sixteen-nine flip-project-img">
-          
-
-
-<img
-  
-    src="/assets/img/blog/new_years_card_297_2023_a.jpg"
-    
-    
-  
-  alt="Kafka를 활용한 이벤트 기반 아키텍처 구축"
-  
-  
-  width="864"
-  height="486"
-  loading="lazy"
-/>
-
-        </div>
-      
-      
-    
-
-    
-
-
-
-  
-
-
-  </header>
-
-  
-    Kafka를 활용한 이벤트 기반 아키텍처 구축 - 임준수 (딜리버리서비스팀), 송인태 (배차시스템팀)
-{:.lead}
-
-이벤트 기반 아키텍처를 적용했던 경험담을 공유 드립니다.
-이벤트 정의부터 구현 과정 그리고 이후로 더 해볼 수 있는 것들까지, 우리가 고민했던 부분들을 이야기해보려 합니다.
-
-- Table of Contents
-{:toc .large-only}
-
-### 이벤트 기반 아키텍처를 왜?
-
-복잡해지는 배달 시스템 때문에 
-- 알림(배달기사가 픽업, 배달시간 알림), 통계, 쿠폰 기능도 추가
-- 점점 더 배달시스템이 커져 감
-- 시스템을 분리하자: 배달과 통계, 알림, 쿠폰, 배달시간
-  - 배달과 강한 일관성을 가지지 않음 - 강한 일관성이란 배달이 변경되었을 떄 관련 기능도 `동시에` 반영되면 된다.
-  - 약한 일관성은 `준실시간`으로 만족가능 함
-  - 이벤트는 시스템에서 일어난 행위이다.
-- 이벤트에 어떤 정보를 가지고 있어야 할까?
-
-### 이벤트의 구성요소
-
-이벤트의 정의
-- 사전적 정의: 중요한 사건, 행사나 일
-- 개발적 정의: captures the memory of something interesting which affects the domain
-- 즉, 배달에서 발생한 행위를 알려주고 싶음
-- 대상, 행동, 정보, 시간
-
-배달이 A라이더에게 11시에 배차되었다.
-
-대상
-- `배달`
-행동
-- `배차`되었다.
-정보
-- 행위와 관련된 값(A라이더)
-- 필요하다면 주문값처럼 이외의 값도 가능
-시간
-- `11시에`
-- 행위가 발생한 시간을 표한
-
-deventId, eventType, data{"state", "riderId"}, occurenceDateTime
-
-이는 배차와 딜리버리 서비스 모두 사용가능 같은 아키텍처 사용
-
-배달 시스템 복잡도 영향 없음
-- 요구사항이 추가되었을때도 마찬가지임
-- 배달변경 사항을 이벤트로 파악 가능
-- 소비처가 배달 상세정보를 조회하지 않아도 됨
-
-데이터 분석
-- 이벤트를 분석해 도메인 히스토리 파악 용이, 분석 정보로 활용 가능
-
-주의할 점
-- 이벤트 데이터 무분별한 추가 주의
-  - 소비처 요구사항에 대한 무분별한 데이터 추가 주의
-  - 행위자 기반의 데이터 정의 필요
-- 이벤트의 순서가 중요
-  - 배달생성 - 배차완료 - 픽업완료 - 배달완료
-  - 케이스 주문취소 이벤트 이후 주문생성 이벤트가 들어옴
-
-
-### 이벤트의 파이프라인(순서 보장)
-
-어떤 메시지 브로커를 사용할까
-- SNS, SQS, 카프카
-- 순서 보장, 고성능/고가용성/통합도구/전담팀 지원 때문에 카프카 선택
-
-순서 보장
-- 토픽에 파티션별로 순서를 보장, 키를 기반으로 키별로 이벤트 순서 보장
-
-통합 도구
-- streams, connect
-
-전담팀 지원
-- 카프카 클러스터 관리(브로커), 모니터링 및 지원도구 제공
-
-배달 -> 카프카 클러스터 (브로커 2개) - 이벤트 발행
-
-
-문제 발생
-- 주키퍼, EBS 상태 때문에 순단 발생
-- 재시도할때 이벤트 발행 순서 오류
-
-문제 해결
-- 트랜잭션 아웃박스 패턴
-- Producer가 Database를 의존하고 Message Relay가 DB 아웃박스를 참조함
-- Message Relay 고려할 점(debezium)
-
-  
-</article>
-
-
-
-  <hr class="dingbat related mb6" />
-
-
-
-
-
-
-  
-     
-
-
-  <aside class="about related mt4 mb4" role="complementary">
-    
-    
-
-<div class="author mt4">
-  
-
-  
-    
-
-
-<img
-  
-    src="/assets/img/me.jpg"
-    
-    
-  
-  alt="Yuhyeon Lee"
-  class="avatar"
-  
-  width="120"
-  height="120"
-  loading="lazy"
-/>
-
-  
-
-  
-  
-  <h2  class="page-title hr-bottom">
-    About
-  </h2>
-
-  <p>백엔드 개발자입니다. 실무에서 Kotlin을 사용합니다.</p>
-
-
-  <div class="sidebar-social">
-    <span class="sr-only">Social:</span>
+<p>복잡해지는 배달 시스템 때문에</p>
 <ul>
-  
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
-      <span class="icon-github"></span>
-      <span class="sr-only">GitHub</span>
-    </a>
+  <li>알림(배달기사가 픽업, 배달시간 알림), 통계, 쿠폰 기능도 추가</li>
+  <li>점점 더 배달시스템이 커져 감</li>
+  <li>시스템을 분리하자: 배달과 통계, 알림, 쿠폰, 배달시간
+    <ul>
+      <li>배달과 강한 일관성을 가지지 않음 - 강한 일관성이란 배달이 변경되었을 떄 관련 기능도 <code class="language-plaintext highlighter-rouge">동시에</code> 반영되면 된다.</li>
+      <li>약한 일관성은 <code class="language-plaintext highlighter-rouge">준실시간</code>으로 만족가능 함</li>
+      <li>이벤트는 시스템에서 일어난 행위이다.</li>
+    </ul>
   </li>
-
-
-    
-  
+  <li>이벤트에 어떤 정보를 가지고 있어야 할까?</li>
 </ul>
 
-  </div>
-</div>
+<h3 id="이벤트의-구성요소">이벤트의 구성요소</h3>
 
-  </aside>
-
-
-  
-
-  
-  
-
-  
-    
-
-
-  
-
-  
-  
-
-  
-    
-
-  
-
-
-  
-<footer class="content" role="contentinfo">
-  <hr/>
-  
-    <p><small class="copyright">© 2021. All rights reserved.
-</small></p>
-  
-  
-    <nav class="legal"><small>
-    
-      
-      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
-      |
-    
-      
-      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
-      |
-    
-      
-      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
-      
-    
-    </small></nav>
-  
-    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
-  <hr class="sr-only"/>
-</footer>
-
-
-</main>
-
-  <hy-drawer
-  id="_drawer"
-  class=""
-  side="left"
-  threshold="10"
-  noscroll
-  
->
-  <header id="_sidebar" class="sidebar" role="banner">
-    
-
-
-
-
-<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/sidebar-bg.jpg)"></div>
-
-    <div class="sidebar-sticky">
-    <div class="sidebar-about" style="margin-bottom: 10px;">
-        <!--블로그타이틀-->
-        <div class="sidebartitle" style="margin-bottom: 45px; margin-left: 45px; margin-right: 45px;">
-            <a class="sidebar-title" href="/"><h2 class="h1">개발자 백호</h2></a>
-
-        </div>
-        <!--블로그로고-->
-        
-        <a class="no-hover" style="margin-bottom: 50px;" href="/" tabindex="-1">
-            <img src="/assets/img/me.jpg" class="avatar"
-                 alt="개발자 백호" width="130" height="130" loading="lazy"/>
-        </a>
-        
-        <!--블로그 간단한 설명-->
-        
-        
-        <p class="">
-            <p>Backend Engineer
-
-        </p>
-        <div style="text-align: center;">
-            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fklyhyeon.github.com&count_bg=%23FF4A00&title_bg=%23701FE7&icon=kotlin.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
-        </div>
-        
-    </div>
-
-    <nav class="sidebar-nav heading" role="navigation">
-        <span class="sr-only">Navigation:</span>
+<p>이벤트의 정의</p>
 <ul>
-  
-    
-      
-      <li>
-        <a
-          id="_drawer--opened"
-          href="/thinkings/"
-          class="sidebar-nav-item "
-          
-        >
-          Thinkings
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/kotlin/"
-          class="sidebar-nav-item "
-          
-        >
-          Kotlin
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/architecture/"
-          class="sidebar-nav-item "
-          
-        >
-          Architecture
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/data/"
-          class="sidebar-nav-item "
-          
-        >
-          Data
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/conference/"
-          class="sidebar-nav-item "
-          
-        >
-          Conference
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/about/"
-          class="sidebar-nav-item "
-          
-        >
-          About
-        </a>
-      </li>
-    
-  
+  <li>사전적 정의: 중요한 사건, 행사나 일</li>
+  <li>개발적 정의: captures the memory of something interesting which affects the domain</li>
+  <li>즉, 배달에서 발생한 행위를 알려주고 싶음</li>
+  <li>대상, 행동, 정보, 시간</li>
 </ul>
 
-    </nav>
+<p>배달이 A라이더에게 11시에 배차되었다.</p>
 
-    <!--소셜바-->
-    
-    <div class="sidebar-social">
-        <span class="sr-only">Social:</span>
+<p>대상</p>
 <ul>
-  
-    
-      
+  <li><code class="language-plaintext highlighter-rouge">배달</code>
+행동</li>
+  <li><code class="language-plaintext highlighter-rouge">배차</code>되었다.
+정보</li>
+  <li>행위와 관련된 값(A라이더)</li>
+  <li>필요하다면 주문값처럼 이외의 값도 가능
+시간</li>
+  <li><code class="language-plaintext highlighter-rouge">11시에</code></li>
+  <li>행위가 발생한 시간을 표한</li>
+</ul>
 
+<p>deventId, eventType, data{“state”, “riderId”}, occurenceDateTime</p>
 
+<p>이는 배차와 딜리버리 서비스 모두 사용가능 같은 아키텍처 사용</p>
 
-  
+<p>배달 시스템 복잡도 영향 없음</p>
+<ul>
+  <li>요구사항이 추가되었을때도 마찬가지임</li>
+  <li>배달변경 사항을 이벤트로 파악 가능</li>
+  <li>소비처가 배달 상세정보를 조회하지 않아도 됨</li>
+</ul>
 
-  
-  
-  
-  
+<p>데이터 분석</p>
+<ul>
+  <li>이벤트를 분석해 도메인 히스토리 파악 용이, 분석 정보로 활용 가능</li>
+</ul>
 
-  
-
-  
-
-  <li>
-    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
-      <span class="icon-github"></span>
-      <span class="sr-only">GitHub</span>
-    </a>
+<p>주의할 점</p>
+<ul>
+  <li>이벤트 데이터 무분별한 추가 주의
+    <ul>
+      <li>소비처 요구사항에 대한 무분별한 데이터 추가 주의</li>
+      <li>행위자 기반의 데이터 정의 필요</li>
+    </ul>
   </li>
-
-
-    
-  
+  <li>이벤트의 순서가 중요
+    <ul>
+      <li>배달생성 - 배차완료 - 픽업완료 - 배달완료</li>
+      <li>케이스 주문취소 이벤트 이후 주문생성 이벤트가 들어옴</li>
+    </ul>
+  </li>
 </ul>
 
-    </div>
-</div>
-  </header>
-</hy-drawer>
-<hr class="sr-only" hidden />
+<h3 id="이벤트의-파이프라인순서-보장">이벤트의 파이프라인(순서 보장)</h3>
 
-</hy-push-state>
+<p>어떤 메시지 브로커를 사용할까</p>
+<ul>
+  <li>SNS, SQS, 카프카</li>
+  <li>순서 보장, 고성능/고가용성/통합도구/전담팀 지원 때문에 카프카 선택</li>
+</ul>
 
+<p>순서 보장</p>
+<ul>
+  <li>토픽에 파티션별로 순서를 보장, 키를 기반으로 키별로 이벤트 순서 보장</li>
+</ul>
 
-  <!--[if gt IE 10]><!---->
-  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
-</script>
-  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
-  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
-  
+<p>통합 도구</p>
+<ul>
+  <li>streams, connect</li>
+</ul>
 
-  
+<p>전담팀 지원</p>
+<ul>
+  <li>카프카 클러스터 관리(브로커), 모니터링 및 지원도구 제공</li>
+</ul>
 
-<!--<![endif]-->
-  <!-- <script>
-  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+<p>배달 -&gt; 카프카 클러스터 (브로커 2개) - 이벤트 발행</p>
 
-  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
-    el.addEventListener('click', function (e) {
-      if (el.pathname === window.location.pathname) {
-        e.preventDefault();
-        e.stopPropagation();
-        document.querySelector('hy-drawer').close();
-      }
-    });
-  });
-</script> -->
+<p>문제 발생</p>
+<ul>
+  <li>주키퍼, EBS 상태 때문에 순단 발생</li>
+  <li>재시도할때 이벤트 발행 순서 오류</li>
+</ul>
 
-<!--
-Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
--->
-<script>
-  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
-    function e(e){
-      (console.error?console.error:console.log).call(console,e)
-    }
-
-    function t(e){
-      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
-    }
-
-    function r(e,t){
-      var r=e.substr(t,2);return parseInt(r,16)
-    }
-
-    function n(e,n){
-      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
-        var l=r(e,a)^c;
-        o+=String.fromCharCode(l)
-      }
-      return t(o)
-    }
-
-    var o="/cdn-cgi/l/email-protection#",
-        c=".__cf_email__",
-        a="data-cfemail",
-        l=document.createElement("div");
-
-    !function(){
-      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
-        try{
-          var c=t[r],a=c.href.indexOf(o);
-          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
-        }catch(t){
-          e(t)
-        }
-    }(),
-    function(){
-      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
-        try{
-          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
-          o.parentNode.replaceChild(i,o)
-        }catch(t){
-          e(t)
-        }
-    }()
-  });
-</script>
-
-
-
-
-
-<div hidden>
-  
-  <h2 class="sr-only">Templates (for web app):</h2>
-
-  <template id="_animation-template">
-  <div class="animation-main fixed-top">
-    <nav id="breadcrumbs" class="screen-only"><ul>
-  
-  
-</ul></nav>
-    <div class="content">
-      <div class="page"></div>
-    </div>
-  </div>
-</template>
-
-  <template id="_loading-template">
-  <div class="loading nav-btn fr">
-    <span class="sr-only">Loading…</span>
-    <span class="icon-cog"></span>
-  </div>
-</template>
-
-  <template id="_error-template">
-  <div class="page">
-    <h1 class="page-title">Error</h1>
-    
-    
-    <p class="lead">
-      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
-
-    </p>
-  </div>
-</template>
-
-  <template id="_permalink-template">
-  <a href="#" class="permalink">
-    <span class="sr-only">Permalink</span>
-    <span class="content-hash"></span>
-  </a>
-</template>
-
-</div>
-
-
-</body>
-</html>
+<p>문제 해결</p>
+<ul>
+  <li>트랜잭션 아웃박스 패턴</li>
+  <li>Producer가 Database를 의존하고 Message Relay가 DB 아웃박스를 참조함</li>
+  <li>Message Relay 고려할 점(debezium)</li>
+</ul>

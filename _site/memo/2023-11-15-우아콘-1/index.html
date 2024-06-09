@@ -1,857 +1,175 @@
-<!DOCTYPE html>
-<html lang="en"><!--
- __  __                __                                     __
-/\ \/\ \              /\ \             __                    /\ \
-\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
- \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
-  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
-   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
-    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
-                /\___/                \ \____/
-                \/__/                  \/___/
-
-Powered by Hydejack v9.1.6 <https://hydejack.com/>
--->
-
-
-
-
-
-
-
-<head>
-  
-
-
-
-
-  <meta name="robots" content="noindex">
-
-
-
-  
-    
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화 | 개발자 백호</title>
-<meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화" />
-<meta name="author" content="Yuhyeon Lee" />
-<meta property="og:locale" content="en" />
-<meta name="description" content="Java와 Kotlin을 다루는 개발자 입니다 😀" />
-<meta property="og:description" content="Java와 Kotlin을 다루는 개발자 입니다 😀" />
-<link rel="canonical" href="http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-1/" />
-<meta property="og:url" content="http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-1/" />
-<meta property="og:site_name" content="개발자 백호" />
-<meta property="og:image" content="http://localhost:4000/assets/img/blog/new_years_card_297_2023_a.jpg" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="http://localhost:4000/assets/img/blog/new_years_card_297_2023_a.jpg" />
-<meta property="twitter:title" content="대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화" />
-<meta name="google-site-verification" content="sKbY2g58grHGkv-1oKVEbfIgG3hOz15fRuuFi0qOQl8" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Yuhyeon Lee"},"dateModified":"2023-11-15T20:31:34+09:00","description":"Java와 Kotlin을 다루는 개발자 입니다 😀","headline":"대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화","image":"http://localhost:4000/assets/img/blog/new_years_card_297_2023_a.jpg","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/me.jpg"},"name":"Yuhyeon Lee"},"url":"http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-1/"}</script>
-<!-- End Jekyll SEO tag -->
-
-
-  
-
-  
-
-
-
-  <meta name="theme-color" content="rgb(25,55,71)">
-
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-
-<meta name="mobile-web-app-capable" content="yes">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="개발자 백호">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-<meta name="application-name" content="개발자 백호">
-
-<meta name="generator" content="Hydejack v9.1.6" />
-
-
-<link rel="alternate" href="http://localhost:4000/memo/2023-11-15-%EC%9A%B0%EC%95%84%EC%BD%98-1/" hreflang="en">
-
-<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="개발자 백호" />
-
-
-<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
-<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
-
-<link rel="manifest" href="/assets/site.webmanifest">
-
-<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
-
-
-
-<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
-
-
-
-
-
-
-<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
-!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
-!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
-!function(w) {
-  w._baseURL = '/';
-  w._publicPath = '/assets/js/';
-  w._noPushState = false;
-  w._noDrawer = false;
-  w._noNavbar = false;
-  w._noToc = false;
-  w._noSearch = false;
-  w._search = {
-    DATA_URL: '/assets/sitedata.json?no-cache',
-    STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2024-01-16T23:25:00+09:00',
-  };
-  w._clapButton = true;
-}(window);</script>
-
-
-<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
-
-
-<!--[if gt IE 8]><!---->
-
-  
-
-
-
-
-<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
-<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
-
-
-
-  <style id="_pageStyle">
-
-html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.5);--accent-color-highlight: rgba(79, 177, 186, 0.1);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71)}
-</style>
-
-
-<!--<![endif]-->
-
-
-
-
-</head>
-
-<body class="no-break-layout">
-  
-
-
-<hy-push-state
-  id="_pushState"
-  replace-selector="#_main"
-  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
-  script-selector="script"
-  duration="500"
-  hashchange
->
-  
-  
-  <div id="_navbar" class="navbar fixed-top">
-  <div class="content">
-    <span class="sr-only">Jump to:</span>
-    <div class="nav-btn-bar">
-      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
-        <span class="sr-only">Navigation</span>
-        <span class="icon-menu"></span>
-      </a>
-      <div class="nav-span"></div>
-    </div>
-  </div>
-</div>
-<hr class="sr-only" hidden />
-
-  <main
-  id="_main"
-  class="content layout-post"
-  role="main"
->
-  <nav id="breadcrumbs" class="screen-only"><ul>
-  
-  
-    <li><a href="/">home</a></li>
-    
-      <li>
-        
-          <span>/</span>
-          
-          
-          <a href="/memo/">memo</a>
-        
-      </li>
-    
-      <li>
-        
-          <span>/</span>
-          <span>2023-11-15-우아콘-1</span>
-        
-      </li>
-    
-  
-</ul></nav>
-  
-
-
-
-
-
-
-
-
-
-
-<article id="post" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      
-        대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화
-      
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime=""></time>  
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 15 Nov 2023">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2023-11-15T20:31:34+09:00">2023-11-15</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-      
-        <div class="img-wrapper lead aspect-ratio sixteen-nine flip-project-img">
-          
-
-
-<img
-  
-    src="/assets/img/blog/new_years_card_297_2023_a.jpg"
-    
-    
-  
-  alt="대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화"
-  
-  
-  width="864"
-  height="486"
-  loading="lazy"
-/>
-
-        </div>
-      
-      
-    
-
-    
-
-
-
-  
-
-
-  </header>
-
-  
-    대규모 트랜잭션을 처리하는 배민 주민시스템 규모에 따른 진화 - 강홍구(푸드주문서버개발팀)
-{:.lead}
-
-5년 전 배달의민족에 합류했을 때, 주문시스템은 급격하게 증가하는 주문수를 처리하기 어려운 시스템이었습니다.
-5년간 주문시스템은 '주문DB 샤딩', 'CQRS 적용' 등 여러 작업들을 통해 일 300만 건 이상의 주문수를 처리하는 안정적인 시스템이 되었습니다.
-대규모 트랜잭션을 처리하는 배민 주문시스템이 변화해간 내용을 공유합니다.
-
-- Table of Contents
-{:toc .large-only}
-
-## 배달의 민족 주문 시스템
-
-장바구니 - 주문하기 - 주문내역
-점심, 저녁시간 트래픽 급증
-
-MSA 마려움
-- 가게, 메뉴, 주문, 결제, 배달 시스템들이 통신
-- 다른 시스템에 문제가 생겨도 주문이 가능해야 함
-
-대용량 데이터
-- 일 평균 300만건 저장, 수년간의 데이터 보관, 관리
-
-대규모 트랜잭션
-- 점심, 저녁시간 몰리는 트랜잭션 대응
-
-여러 시스템과 여계
-- 이벤트 기반(유실 됐을 때 대응)
-- MSA 이벤트 일관성
-
-## 성장하는 배민 주문 시스템
-
-일 주문건수 2018(약 30만) - 2023(약 350만)
-- 단일 장애 포인트가 전체 시스템의 장애로 이어짐
-- 대용량 데이터 - RDBMS 조인 연산으로 조회 성능 좋지 않음
-- 대규모 트랜잭션 - 주문수 증가로 저장소의 분당 쓰기 처리량 한계에 도달
-- 복잡한 이벤트 아키텍처 - 규칙 없는 이벤트 발행으로 유실되는 이벤트 많아지고 서비스 복잡도 높아짐
-
-## #단일 장애 포인트
-
-MSA 적용(MQ 이용)
-
-중앙 집중 DB의 장애가 전체 시스템으로 변화
-주문 시스템 -> **RUBY(중앙집중형 장비 DB)** -> 주문 중계, 가게 시스템, ETC 시스템
+<p class="lead">대규모 트랜잭션을 처리하는 배민 주민시스템 규모에 따른 진화 - 강홍구(푸드주문서버개발팀)</p>
+
+<p>5년 전 배달의민족에 합류했을 때, 주문시스템은 급격하게 증가하는 주문수를 처리하기 어려운 시스템이었습니다.
+5년간 주문시스템은 ‘주문DB 샤딩’, ‘CQRS 적용’ 등 여러 작업들을 통해 일 300만 건 이상의 주문수를 처리하는 안정적인 시스템이 되었습니다.
+대규모 트랜잭션을 처리하는 배민 주문시스템이 변화해간 내용을 공유합니다.</p>
+
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#배달의-민족-주문-시스템" id="markdown-toc-배달의-민족-주문-시스템">배달의 민족 주문 시스템</a></li>
+  <li><a href="#성장하는-배민-주문-시스템" id="markdown-toc-성장하는-배민-주문-시스템">성장하는 배민 주문 시스템</a></li>
+  <li><a href="#단일-장애-포인트" id="markdown-toc-단일-장애-포인트">#단일 장애 포인트</a></li>
+  <li><a href="#대용량-데이터" id="markdown-toc-대용량-데이터">대용량 데이터</a></li>
+  <li><a href="#대규모-트랜잭션" id="markdown-toc-대규모-트랜잭션">대규모 트랜잭션</a></li>
+  <li><a href="#복잡한-이벤트-아키텍처" id="markdown-toc-복잡한-이벤트-아키텍처">복잡한 이벤트 아키텍처</a></li>
+  <li><a href="#요약" id="markdown-toc-요약">요약</a></li>
+</ul>
+
+<h2 id="배달의-민족-주문-시스템">배달의 민족 주문 시스템</h2>
+
+<p>장바구니 - 주문하기 - 주문내역
+점심, 저녁시간 트래픽 급증</p>
+
+<p>MSA 마려움</p>
+<ul>
+  <li>가게, 메뉴, 주문, 결제, 배달 시스템들이 통신</li>
+  <li>다른 시스템에 문제가 생겨도 주문이 가능해야 함</li>
+</ul>
+
+<p>대용량 데이터</p>
+<ul>
+  <li>일 평균 300만건 저장, 수년간의 데이터 보관, 관리</li>
+</ul>
+
+<p>대규모 트랜잭션</p>
+<ul>
+  <li>점심, 저녁시간 몰리는 트랜잭션 대응</li>
+</ul>
+
+<p>여러 시스템과 여계</p>
+<ul>
+  <li>이벤트 기반(유실 됐을 때 대응)</li>
+  <li>MSA 이벤트 일관성</li>
+</ul>
+
+<h2 id="성장하는-배민-주문-시스템">성장하는 배민 주문 시스템</h2>
+
+<p>일 주문건수 2018(약 30만) - 2023(약 350만)</p>
+<ul>
+  <li>단일 장애 포인트가 전체 시스템의 장애로 이어짐</li>
+  <li>대용량 데이터 - RDBMS 조인 연산으로 조회 성능 좋지 않음</li>
+  <li>대규모 트랜잭션 - 주문수 증가로 저장소의 분당 쓰기 처리량 한계에 도달</li>
+  <li>복잡한 이벤트 아키텍처 - 규칙 없는 이벤트 발행으로 유실되는 이벤트 많아지고 서비스 복잡도 높아짐</li>
+</ul>
+
+<h2 id="단일-장애-포인트">#단일 장애 포인트</h2>
+
+<p>MSA 적용(MQ 이용)</p>
+
+<p>중앙 집중 DB의 장애가 전체 시스템으로 변화
+주문 시스템 -&gt; <strong>RUBY(중앙집중형 장비 DB)</strong> -&gt; 주문 중계, 가게 시스템, ETC 시스템
 각 시스템 (주문 시스템) (가게 시스템) (ETC SyStem)을 별도의 DB를 가지게 해 탈 루비 성공. MQ로 이벤트 기반 아키텍처 사용
-MQ 지연돼도 MQ 재소비가 가능하기에 지연을 줄임
+MQ 지연돼도 MQ 재소비가 가능하기에 지연을 줄임</p>
 
-## 대용량 데이터
+<h2 id="대용량-데이터">대용량 데이터</h2>
 
-주문 요청 (command: 주문 API) -> 주문 이벤트 발생 -> 주문MQ // 조회 요청(query: 주문 인터널 API)
-주문내역 상세에 정말 많은 데이터가 필요함
+<p>주문 요청 (command: 주문 API) -&gt; 주문 이벤트 발생 -&gt; 주문MQ // 조회 요청(query: 주문 인터널 API)
+주문내역 상세에 정말 많은 데이터가 필요함</p>
 
-주문 애그리거트 기술로 조인 연산이 필요했었음 -> 조인, 조인, line item, delivery, seller_sumary...
-mongoDB를 이용해 애그리거트 역정규화로 테이블을 하나의 도큐먼트로 구성함
+<p>주문 애그리거트 기술로 조인 연산이 필요했었음 -&gt; 조인, 조인, line item, delivery, seller_sumary…
+mongoDB를 이용해 애그리거트 역정규화로 테이블을 하나의 도큐먼트로 구성함</p>
 
-데이터 동기화
-- 주문 이벤트 발생 -> 처리기 -> 몽고 DB에 주문 데이터 동기화 -> 주문 조회 요청(주문 인터널 API)도 몽고 DB를 조회
+<p>데이터 동기화</p>
+<ul>
+  <li>주문 이벤트 발생 -&gt; 처리기 -&gt; 몽고 DB에 주문 데이터 동기화 -&gt; 주문 조회 요청(주문 인터널 API)도 몽고 DB를 조회</li>
+</ul>
 
-결론: 커맨드 모델과 조회 모델을 분리하고 조회 모델 역 정규화를 통해 해결
+<p>결론: 커맨드 모델과 조회 모델을 분리하고 조회 모델 역 정규화를 통해 해결</p>
 
-## 대규모 트랜잭션
+<h2 id="대규모-트랜잭션">대규모 트랜잭션</h2>
 
-CQRS 
+<p>CQRS</p>
 
-아래와 같은 구조 HA(High availability?) 구성
-주문 API -> (쓰기 요청) 주문 DB(primary) writer
-주문 인터널 API(실시간 조회) -> reader 주문 DB(replica)
+<p>아래와 같은 구조 HA(High availability?) 구성
+주문 API -&gt; (쓰기 요청) 주문 DB(primary) writer
+주문 인터널 API(실시간 조회) -&gt; reader 주문 DB(replica)</p>
 
-하지만 스펙업 때문에 
+<p>하지만 스펙업 때문에</p>
 
-해결책은 샤딩
+<p>해결책은 샤딩
 샤드 클러스터를 구성해 쓰기 부하를 분한
-하지만 AWS 오로라는 샤딩을 지원하지 않음
+하지만 AWS 오로라는 샤딩을 지원하지 않음</p>
 
-코드 단에서 애플리케이션 샤딩을 구현하자
+<p>코드 단에서 애플리케이션 샤딩을 구현하자</p>
 
-- 데이터 저장 시 어떤 샤드에 접근할지 결정하는 샤딩전략 고민
-- 여러 샤드에 있는 데이터를 애그리게이트 하는 방법에 대한 고민
+<ul>
+  <li>데이터 저장 시 어떤 샤드에 접근할지 결정하는 샤딩전략 고민</li>
+  <li>여러 샤드에 있는 데이터를 애그리게이트 하는 방법에 대한 고민</li>
+</ul>
 
-샤딩 전략
-- key Based
-    - hash based 주문번호를 Hash function을 돌려서 나온 해시 값으로 샤드에 이어줌(주문 A - 해시값 1 - 샤드 1)
-    - 구현 간단, 샤드 클러스터 , 데이터 동적으로 재배치할 때 샤드 변경
-- Range based sharding
-  - 주문 가격 기반으로 샤딩함
-  - 특정 값의 범위 기반(5천원~1만원)으로 샤드를 결정하면 돼서 구현이 간단
-  - 데이터가 균등하게 배분되지 않아 특정 샤드에 부하가 될 수 있음
-- Directory Based
-  - Key based와 유사한데 룩업 테이블이 있음
-  - 동적으로 샤드를 추가하는데 유리
-  - 룩업 테이블이 단일 장애 포인트가 될 수 있음
+<p>샤딩 전략</p>
+<ul>
+  <li>key Based
+    <ul>
+      <li>hash based 주문번호를 Hash function을 돌려서 나온 해시 값으로 샤드에 이어줌(주문 A - 해시값 1 - 샤드 1)</li>
+      <li>구현 간단, 샤드 클러스터 , 데이터 동적으로 재배치할 때 샤드 변경</li>
+    </ul>
+  </li>
+  <li>Range based sharding
+    <ul>
+      <li>주문 가격 기반으로 샤딩함</li>
+      <li>특정 값의 범위 기반(5천원~1만원)으로 샤드를 결정하면 돼서 구현이 간단</li>
+      <li>데이터가 균등하게 배분되지 않아 특정 샤드에 부하가 될 수 있음</li>
+    </ul>
+  </li>
+  <li>Directory Based
+    <ul>
+      <li>Key based와 유사한데 룩업 테이블이 있음</li>
+      <li>동적으로 샤드를 추가하는데 유리</li>
+      <li>룩업 테이블이 단일 장애 포인트가 될 수 있음</li>
+    </ul>
+  </li>
+</ul>
 
-주문 시스템의 특징
-- 주문이 정상 동작하지 않으면 배민 전체 서비스의 좋지 않은 경험이 된다 -> 단일 장애 포인트는 피함
-- `동적` 주문 데이터는 최대 30일 만 저장한다. -> 샤드 추가 이후 30일이 지나면 데이터는 다시 균등하게 분배된다.
-- 결정은 Key Based 샤딩
-주문 순번 % 샤드 수 = 샤드번호
-- 주문번호 샤드 키를 사용해 균등 분배
+<p>주문 시스템의 특징</p>
+<ul>
+  <li>주문이 정상 동작하지 않으면 배민 전체 서비스의 좋지 않은 경험이 된다 -&gt; 단일 장애 포인트는 피함</li>
+  <li><code class="language-plaintext highlighter-rouge">동적</code> 주문 데이터는 최대 30일 만 저장한다. -&gt; 샤드 추가 이후 30일이 지나면 데이터는 다시 균등하게 분배된다.</li>
+  <li>결정은 Key Based 샤딩
+주문 순번 % 샤드 수 = 샤드번호</li>
+  <li>주문번호 샤드 키를 사용해 균등 분배</li>
+</ul>
 
-(_애플리케이션 예시 코드 사진있음_)
+<p>(<em>애플리케이션 예시 코드 사진있음</em>)</p>
 
-다건 주문 내역 조회도 샤딩과 몽고 DB로 해소
+<p>다건 주문 내역 조회도 샤딩과 몽고 DB로 해소</p>
 
-## 복잡한 이벤트 아키텍처
+<h2 id="복잡한-이벤트-아키텍처">복잡한 이벤트 아키텍처</h2>
 
-이벤트를 기반으로 관심사를 분리
+<p>이벤트를 기반으로 관심사를 분리</p>
 
-주문 생성(OPENDED) ACCEPTED, CLOSED, CANCELED
+<p>주문 생성(OPENDED) ACCEPTED, CLOSED, CANCELED</p>
 
-OrderDomainService -> spring event -> OrderOpen(Accept, close, cancelled)PostProcessService -> sqs event
+<p>OrderDomainService -&gt; spring event -&gt; OrderOpen(Accept, close, cancelled)PostProcessService -&gt; sqs event</p>
 
-문제점 1
+<p>문제점 1
 주문 API - 주문 생성 알림 전송 요청
-주문배치 - - 주문 취소 알림 전송 요청, 현금 영수증 -> 알람전송
-이벤트 처리기  --현금 영수정 -> 현금 영수정
+주문배치 - - 주문 취소 알림 전송 요청, 현금 영수증 -&gt; 알람전송
+이벤트 처리기  –현금 영수정 -&gt; 현금 영수정</p>
 
-문제점 2
+<p>문제점 2
 이벤트 유실 발생했을 때 재처리가 어려웠음
-주문 도메인 이벤트는 내부 이벤트로 정의, 서비스 로직은 외부 이벤트로 정의
+주문 도메인 이벤트는 내부 이벤트로 정의, 서비스 로직은 외부 이벤트로 정의</p>
 
-주문 API 여러개 -> SQS(orderNO, orderStatus) -> 이벤트 처리기(주문 저장소: 현금영수증이나 주문 생성에 필요한 정보들을 조회해서 채워줌) (mongoDB NoSQL을 사용하기 때문에 부담없었음)
+<p>주문 API 여러개 -&gt; SQS(orderNO, orderStatus) -&gt; 이벤트 처리기(주문 저장소: 현금영수증이나 주문 생성에 필요한 정보들을 조회해서 채워줌) (mongoDB NoSQL을 사용하기 때문에 부담없었음)</p>
 
+<p>이벤트 처리 주체의 단일화</p>
 
-이벤트 처리 주체의 단일화
+<p>도메인은 도메인 이벤트만 발행, 이벤트 스냅샷 (SQS) -&gt; 이벤트</p>
 
-도메인은 도메인 이벤트만 발행, 이벤트 스냅샷 (SQS) -> 이벤트 
-
-이벤트 발행 실패 유형
-- 트랜잭션 안에서 이벤트 발생 실패: 도메인 로직 전체가 실패(이슈 없음)
-- 도메인 로직은 성공 이벤트 발생 실패로 서비스 로직 재실행 못함
-트랜잭션 아웃박스 패턴
-- 이벤트 발생 실패와 서비스 실패를 격리하여 재발행 수단을 보장
-서비스 로직 -> 아웃박스 -> 이벤트 publish
-- 이벤트 유실이 발생해서 이벤트 퍼블리시가 아웃박스를 통해 payload를 재소비
-
-
-## 요약
-
-- MQ(MSA)
-- 샤드 클러스터(대용량 데이터)
-- CQRS(대규모 트랜잭션)
-  
-</article>
-
-
-
-  <hr class="dingbat related mb6" />
-
-
-
-
-
-
-  
-     
-
-
-  <aside class="about related mt4 mb4" role="complementary">
-    
-    
-
-<div class="author mt4">
-  
-
-  
-    
-
-
-<img
-  
-    src="/assets/img/me.jpg"
-    
-    
-  
-  alt="Yuhyeon Lee"
-  class="avatar"
-  
-  width="120"
-  height="120"
-  loading="lazy"
-/>
-
-  
-
-  
-  
-  <h2  class="page-title hr-bottom">
-    About
-  </h2>
-
-  <p>백엔드 개발자입니다. 실무에서 Kotlin을 사용합니다.</p>
-
-
-  <div class="sidebar-social">
-    <span class="sr-only">Social:</span>
+<p>이벤트 발행 실패 유형</p>
 <ul>
-  
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
-      <span class="icon-github"></span>
-      <span class="sr-only">GitHub</span>
-    </a>
-  </li>
-
-
-    
-  
+  <li>트랜잭션 안에서 이벤트 발생 실패: 도메인 로직 전체가 실패(이슈 없음)</li>
+  <li>도메인 로직은 성공 이벤트 발생 실패로 서비스 로직 재실행 못함
+트랜잭션 아웃박스 패턴</li>
+  <li>이벤트 발생 실패와 서비스 실패를 격리하여 재발행 수단을 보장
+서비스 로직 -&gt; 아웃박스 -&gt; 이벤트 publish</li>
+  <li>이벤트 유실이 발생해서 이벤트 퍼블리시가 아웃박스를 통해 payload를 재소비</li>
 </ul>
 
-  </div>
-</div>
+<h2 id="요약">요약</h2>
 
-  </aside>
-
-
-  
-
-  
-  
-
-  
-    
-
-
-  
-
-  
-  
-
-  
-    
-
-  
-
-
-  
-<footer class="content" role="contentinfo">
-  <hr/>
-  
-    <p><small class="copyright">© 2021. All rights reserved.
-</small></p>
-  
-  
-    <nav class="legal"><small>
-    
-      
-      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
-      |
-    
-      
-      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
-      |
-    
-      
-      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
-      
-    
-    </small></nav>
-  
-    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
-  <hr class="sr-only"/>
-</footer>
-
-
-</main>
-
-  <hy-drawer
-  id="_drawer"
-  class=""
-  side="left"
-  threshold="10"
-  noscroll
-  
->
-  <header id="_sidebar" class="sidebar" role="banner">
-    
-
-
-
-
-<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/sidebar-bg.jpg)"></div>
-
-    <div class="sidebar-sticky">
-    <div class="sidebar-about" style="margin-bottom: 10px;">
-        <!--블로그타이틀-->
-        <div class="sidebartitle" style="margin-bottom: 45px; margin-left: 45px; margin-right: 45px;">
-            <a class="sidebar-title" href="/"><h2 class="h1">개발자 백호</h2></a>
-
-        </div>
-        <!--블로그로고-->
-        
-        <a class="no-hover" style="margin-bottom: 50px;" href="/" tabindex="-1">
-            <img src="/assets/img/me.jpg" class="avatar"
-                 alt="개발자 백호" width="130" height="130" loading="lazy"/>
-        </a>
-        
-        <!--블로그 간단한 설명-->
-        
-        
-        <p class="">
-            <p>Backend Engineer
-
-        </p>
-        <div style="text-align: center;">
-            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fklyhyeon.github.com&count_bg=%23FF4A00&title_bg=%23701FE7&icon=kotlin.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
-        </div>
-        
-    </div>
-
-    <nav class="sidebar-nav heading" role="navigation">
-        <span class="sr-only">Navigation:</span>
 <ul>
-  
-    
-      
-      <li>
-        <a
-          id="_drawer--opened"
-          href="/thinkings/"
-          class="sidebar-nav-item "
-          
-        >
-          Thinkings
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/kotlin/"
-          class="sidebar-nav-item "
-          
-        >
-          Kotlin
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/architecture/"
-          class="sidebar-nav-item "
-          
-        >
-          Architecture
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/data/"
-          class="sidebar-nav-item "
-          
-        >
-          Data
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/conference/"
-          class="sidebar-nav-item "
-          
-        >
-          Conference
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/about/"
-          class="sidebar-nav-item "
-          
-        >
-          About
-        </a>
-      </li>
-    
-  
+  <li>MQ(MSA)</li>
+  <li>샤드 클러스터(대용량 데이터)</li>
+  <li>CQRS(대규모 트랜잭션)</li>
 </ul>
-
-    </nav>
-
-    <!--소셜바-->
-    
-    <div class="sidebar-social">
-        <span class="sr-only">Social:</span>
-<ul>
-  
-    
-      
-
-
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  <li>
-    <a href="https://github.com/klyhyeon" title="GitHub" class="no-mark-external">
-      <span class="icon-github"></span>
-      <span class="sr-only">GitHub</span>
-    </a>
-  </li>
-
-
-    
-  
-</ul>
-
-    </div>
-</div>
-  </header>
-</hy-drawer>
-<hr class="sr-only" hidden />
-
-</hy-push-state>
-
-
-  <!--[if gt IE 10]><!---->
-  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
-</script>
-  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
-  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
-  
-
-  
-
-<!--<![endif]-->
-  <!-- <script>
-  document.querySelector('hy-push-state').setAttribute('prefetch', '');
-
-  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
-    el.addEventListener('click', function (e) {
-      if (el.pathname === window.location.pathname) {
-        e.preventDefault();
-        e.stopPropagation();
-        document.querySelector('hy-drawer').close();
-      }
-    });
-  });
-</script> -->
-
-<!--
-Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
--->
-<script>
-  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
-    function e(e){
-      (console.error?console.error:console.log).call(console,e)
-    }
-
-    function t(e){
-      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
-    }
-
-    function r(e,t){
-      var r=e.substr(t,2);return parseInt(r,16)
-    }
-
-    function n(e,n){
-      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
-        var l=r(e,a)^c;
-        o+=String.fromCharCode(l)
-      }
-      return t(o)
-    }
-
-    var o="/cdn-cgi/l/email-protection#",
-        c=".__cf_email__",
-        a="data-cfemail",
-        l=document.createElement("div");
-
-    !function(){
-      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
-        try{
-          var c=t[r],a=c.href.indexOf(o);
-          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
-        }catch(t){
-          e(t)
-        }
-    }(),
-    function(){
-      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
-        try{
-          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
-          o.parentNode.replaceChild(i,o)
-        }catch(t){
-          e(t)
-        }
-    }()
-  });
-</script>
-
-
-
-
-
-<div hidden>
-  
-  <h2 class="sr-only">Templates (for web app):</h2>
-
-  <template id="_animation-template">
-  <div class="animation-main fixed-top">
-    <nav id="breadcrumbs" class="screen-only"><ul>
-  
-  
-</ul></nav>
-    <div class="content">
-      <div class="page"></div>
-    </div>
-  </div>
-</template>
-
-  <template id="_loading-template">
-  <div class="loading nav-btn fr">
-    <span class="sr-only">Loading…</span>
-    <span class="icon-cog"></span>
-  </div>
-</template>
-
-  <template id="_error-template">
-  <div class="page">
-    <h1 class="page-title">Error</h1>
-    
-    
-    <p class="lead">
-      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
-
-    </p>
-  </div>
-</template>
-
-  <template id="_permalink-template">
-  <a href="#" class="permalink">
-    <span class="sr-only">Permalink</span>
-    <span class="content-hash"></span>
-  </a>
-</template>
-
-</div>
-
-
-</body>
-</html>
