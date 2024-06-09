@@ -1,0 +1,76 @@
+<p class="lead">Querydsl에서 프로젝션을 사용해 쿼리 결과를 DTO로 받는 방법을 공부하고자 정리해보았습니다. 김영한님 책에 있는 내용을 그대로 발췌하였습니다.</p>
+
+<ul class="large-only" id="markdown-toc">
+  <li><a href="#프로젝션" id="markdown-toc-프로젝션">프로젝션</a>    <ul>
+      <li><a href="#빈-생성" id="markdown-toc-빈-생성">빈 생성</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="프로젝션">프로젝션</h2>
+
+<p>select 절에 조회 대상을 지정하는 것을 프로젝션이라 합니다.</p>
+
+<h3 id="빈-생성">빈 생성</h3>
+
+<p>쿼리 결과를 엔티티가 아닌 특정 개겣로 받고 싶으면 빈 생성(Bean population) 기능을 사용합니다.
+QueryDSL은 객체를 생성하는 다양한 방법을 제공합니다.</p>
+
+<ul>
+  <li>프로퍼티 접근</li>
+  <li>필드 직접 접근</li>
+  <li>생성자 사용</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">join(조인 대상, 별칭으로 사용할 쿼리 타입)</code></p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ItemDTO</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="py">username</span><span class="p">:</span> <span class="nc">String</span>
+    <span class="kd">var</span> <span class="py">price</span><span class="p">:</span> <span class="nc">Int</span>
+ 
+    <span class="k">constructor</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="n">price</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">username</span> <span class="p">=</span> <span class="n">username</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">price</span> <span class="p">=</span> <span class="n">price</span>
+    <span class="p">}</span>
+    
+    <span class="k">constructor</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// 프로퍼티 접근(Setter)</span>
+<span class="kd">val</span> <span class="py">item</span> <span class="p">=</span> <span class="nc">QItem</span><span class="p">.</span><span class="n">item</span>
+<span class="kd">val</span> <span class="py">resultByBean</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">list</span><span class="p">(</span>
+        <span class="nc">Projections</span><span class="p">.</span><span class="nf">bean</span><span class="p">(</span>
+            <span class="nc">ItemDTO</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span>
+            <span class="n">item</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="nf">`as`</span><span class="p">(</span><span class="s">"username"</span><span class="p">),</span>
+            <span class="n">item</span><span class="p">.</span><span class="n">price</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1">// 필드 직접 접근: 필드에 직접 접근해서 값을 채워줌, 필드를 private으로 설정해도 동작함</span>
+<span class="kd">val</span> <span class="py">resultByField</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">list</span><span class="p">(</span>
+        <span class="nc">Projections</span><span class="p">.</span><span class="nf">fields</span><span class="p">(</span>
+            <span class="nc">ItemDTO</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span>
+            <span class="n">item</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="nf">`as`</span><span class="p">(</span><span class="s">"username"</span><span class="p">),</span>
+            <span class="n">item</span><span class="p">.</span><span class="n">price</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1">// 생성자 사용: 생성자를 사용해 값을 채워줌. 프로젝션과 파라미터 순서가 같은 생성자가 필요함</span>
+<span class="kd">val</span> <span class="py">resultByConstructor</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">list</span><span class="p">(</span>
+        <span class="nc">Projections</span><span class="p">.</span><span class="k">constructor</span><span class="p">(</span>
+            <span class="nc">ItemDTO</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span>
+            <span class="n">item</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">item</span><span class="p">.</span><span class="n">price</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+<p>참고:</p>
+<ul>
+  <li><a href="https://product.kyobobook.co.kr/detail/S000000935744">자바 ORM 표준 JPA 프로그래밍 - 김영한</a></li>
+</ul>
