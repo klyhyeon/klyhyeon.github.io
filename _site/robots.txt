@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://klyhyeon.github.io/sitemap.xml
