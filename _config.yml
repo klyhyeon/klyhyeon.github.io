@@ -58,7 +58,7 @@ menu:
     url:              /data/
   - title:             Conference
     url:               /conference/
-  - title:             Infra
+  - title:             Infrastructure
     url:               /infrastructure/
   - title:             About
     url:               /about/
