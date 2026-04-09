@@ -3,10 +3,9 @@ layout: post
 title: 2024년 회고
 image: 
   path: /assets/img/blog/diary.jpg
-#description: >
-#  Version 9 is the most complete version of Hydejack yet.
-#  Modernized design, big headlines, and big new features.
-sitemap: false
+description: >
+  2024년 회고. 어떤 공부를 해야할지 방향을 잡지 못했던 한 해를 돌아보며 커리어에 대해 고찰합니다.
+sitemap: true
 ---
 
 **2024년을 보내며**

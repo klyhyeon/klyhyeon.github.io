@@ -3,10 +3,9 @@ layout: post
 title: Kotlin In-memory Cache & Caffeine
 image: 
   path: /assets/img/blog/cache.webp
-#description: >
-#  Version 9 is the most complete version of Hydejack yet.
-#  Modernized design, big headlines, and big new features.
-sitemap: false
+description: >
+  Kotlin에서 In-memory Cache의 개념과 Caffeine 라이브러리를 활용한 캐시 구현 방법을 예제 코드와 함께 소개합니다.
+sitemap: true
 ---
 
 Kotlin의 In-memory Cache에 대해 알아보고 Caffeine 라이브러리 살펴보기 

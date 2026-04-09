@@ -3,10 +3,9 @@ layout: post
 title: 시니어 개발자가 될 수 있을까 
 image: 
   path: /assets/img/blog/senior_software_engineer.jpeg
-#description: >
-#  Version 9 is the most complete version of Hydejack yet.
-#  Modernized design, big headlines, and big new features.
-sitemap: false
+description: >
+  시니어 개발자가 되기 위해 필요한 역량 정리. 개발 방법론, 디자인 패턴, 프로그래밍 언어 이해에 대한 Medium 아티클 리뷰입니다.
+sitemap: true
 ---
 
 **시니어 타이틀은 연차가 만들어주지 않는다.**
