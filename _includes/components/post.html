@@ -48,9 +48,21 @@
         {% endif %}
       {% endunless %}
     </div>
-    <div style="color: #999; font-size: 0.75em; margin-top: 0.25em; text-align: right;">
-      <span data-goatcounter-show=".">0</span> Views
+    <div id="gc-counter" style="color: #999; font-size: 0.75em; margin-top: 0.25em; text-align: right;">
     </div>
+    <script>
+      var t = setInterval(function() {
+        if (window.goatcounter && window.goatcounter.visit_count) {
+          clearInterval(t);
+          window.goatcounter.visit_count({
+            append: '#gc-counter',
+            type: 'html',
+            no_branding: true,
+            path: location.pathname
+          });
+        }
+      }, 100);
+    </script>
 
     {% assign alt = false %}
     {% unless hide_image %}{% if post.image %}
