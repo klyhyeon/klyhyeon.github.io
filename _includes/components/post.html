@@ -50,28 +50,24 @@
     </div>
     <div style="text-align: right; margin-top: 0.25em; color: #999; font-size: 0.75em;">
       <span id="gc-display">0 Views</span>
-      <div id="gc-hidden" style="display:none;"></div>
     </div>
     <script>
-      var t = setInterval(function() {
-        if (window.goatcounter && window.goatcounter.visit_count) {
-          clearInterval(t);
-          window.goatcounter.visit_count({
-            append: '#gc-hidden',
-            type: 'html',
-            no_branding: true,
-            path: location.pathname
-          });
-          setTimeout(function() {
-            var h = document.getElementById('gc-hidden');
-            var d = document.getElementById('gc-display');
-            if (h && d) {
-              var num = h.textContent.replace(/[^0-9]/g, '') || '0';
-              d.textContent = num + ' Views';
+      (function() {
+        var path = location.pathname;
+        var url = 'https://klyhyeon.goatcounter.com/counter/' + encodeURIComponent(path) + '.json';
+        var x = new XMLHttpRequest();
+        x.open('GET', url);
+        x.onload = function() {
+          try {
+            var data = JSON.parse(x.responseText);
+            var el = document.getElementById('gc-display');
+            if (el && data.count !== undefined) {
+              el.textContent = data.count + ' Views';
             }
-          }, 500);
-        }
-      }, 100);
+          } catch(e) {}
+        };
+        x.send();
+      })();
     </script>
 
     {% assign alt = false %}
