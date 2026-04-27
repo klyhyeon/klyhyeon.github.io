@@ -30,7 +30,7 @@ description: >
 tagline: Backend Engineer
 
 # A list of keywords for your blog
-keywords: []
+keywords: [Java, Kotlin, Backend, 백엔드, 개발자, 아키텍처, 코루틴, 인프라]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
@@ -315,6 +315,7 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+  - docs/
 include:
   - .well-known
   - LICENSE.md
