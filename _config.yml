@@ -24,7 +24,7 @@ title: 개발자 백호
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description: >
-  Java와 Kotlin을 다루는 개발자 입니다 😀
+  기획 업무로 커리어를 시작해, 현재는 백엔드 개발자로서 B2C 청소년 금융 및 B2B 부동산 등 다양한 도메인에서 경험을 쌓아오고 있습니다. 최근에는 글로벌 환경에서 동료들과 협업하며 매일 새로운 문제를 해결하고 있습니다.
 
 # A shorter description for the sidebar.
 tagline: Backend Engineer
@@ -87,14 +87,14 @@ paginate_path: /:num/
 # Theme
 # ---------------------------------------------------------------------------------------
 
-# theme: jekyll-theme-hydejack
-remote_theme: hydecorp/hydejack@v9
+theme: jekyll-theme-hydejack
+# remote_theme: hydecorp/hydejack@v9
 
 # Customizaton
 # ----------------------------------------------------------------------------------------
 
 # Sidebar image and theme color of the site.
-accent_image: /assets/img/sidebar-bg.jpg
+accent_image: /assets/img/sidebar-bg.png
 accent_color: rgb(79,177,186)
 
 # This is used for the `theme-color` meta tag,
@@ -141,11 +141,11 @@ defaults:
       layout: plain
       sitemap: false
 
-  # # You can use the following to enable comments on all posts.
-  # - scope:
-  #     type:            posts
-  #   values:
-  #     comments:        true
+  # Enable comments on all posts.
+  - scope:
+      type: posts
+    values:
+      comments: true
 
   # `jekyll-seo-tag` will mark collection outputs as `BlogPosting`,
   # but we want them to be `WebPage`s:
@@ -402,21 +402,21 @@ jekyll_compose:
         A short ~160 character description of your post for search engines,
         social media previews, etc.
       image:
-        path: /assets/img/sidebar-bg.jpg
+        path: /assets/img/sidebar-bg.png
     posts:
       layout: post
       description: >
         A short ~160 character description of your post for search engines,
         social media previews, etc.
       image:
-        path: /assets/img/sidebar-bg.jpg
+        path: /assets/img/sidebar-bg.png
     projects:
       layout: project
       description: >
         A short ~160 character description of your post for search engines,
         social media previews, etc.
       image:
-        path: /assets/img/sidebar-bg.jpg
+        path: /assets/img/sidebar-bg.png
       links:
         - title: Project Link
           url: https://example.com
