@@ -3,10 +3,6 @@ layout: post
 title: AWS 서브넷(Subnet) & CIDR(Classless Inter-Domain Routing)
 image: 
   path: 
-#description: >
-#  Version 9 is the most complete version of Hydejack yet.
-#  Modernized design, big headlines, and big new features.
-sitemap: false
 ---
 
 AWS private 서브넷 생성하기
