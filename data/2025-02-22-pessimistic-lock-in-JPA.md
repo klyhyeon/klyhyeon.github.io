@@ -3,10 +3,6 @@ layout: post
 title: JPA Pessimistic Lock(비관적락)에 대해 알아보기
 image: 
   path: /assets/img/blog/jpa.svg
-#description: >
-#  Version 9 is the most complete version of Hydejack yet.
-#  Modernized design, big headlines, and big new features.
-sitemap: false
 ---
 
 JPA Pessimistic Lock(비관적락)에 대해 알아보기 

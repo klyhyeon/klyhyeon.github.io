@@ -3,10 +3,6 @@ layout: post
 title: 2023 GDG 송도 Devfest 참여후기
 image: 
   path: /assets/img/blog/gdg_devfest.webp
-#description: >
-#  Version 9 is the most complete version of Hydejack yet.
-#  Modernized design, big headlines, and big new features.
-sitemap: false
 ---
 
 KakaoTech Meet up
